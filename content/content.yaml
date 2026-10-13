@@ -1,0 +1,112 @@
+# ВНИМАНИЕ: тестовые данные. Цифры и формулировки — заглушки, заменить на реальные.
+
+profile:
+  name: Иван Доронин
+  title: Python Backend Developer
+  tagline: Разрабатываю бэкенд финтех-сервисов и Telegram-ботов
+  location: Москва · Remote
+  about: |
+    Python backend-разработчик с опытом 2+ года. Делаю сервисы, где важны
+    надёжность: интеграции с внешними сервисами, обработка заявок, админ-панели
+    для операторов. Люблю понятную архитектуру и код, который легко поддерживать.
+  motivation: |
+    Мне нравится бэкенд за то, что от него напрямую зависит, работает ли бизнес:
+    если запрос потерялся — это видно сразу. Хочу расти в сторону highload
+    и асинхронной архитектуры, проектировать системы, которые спокойно
+    выдерживают рост нагрузки, и работать в команде с сильным код-ревью.
+  contacts:
+    telegram: https://t.me/username
+    github: https://github.com/2Neo2
+    email: ivandoronin22@gmail.com
+    hh: null
+  resume_url: /static/resume.pdf
+
+skills:
+  - group: Языки и фреймворки
+    items: [Python, Django, FastAPI, aiogram, pyTelegramBotAPI]
+  - group: Базы данных
+    items: [PostgreSQL, SQLite, Redis, SQLAlchemy 2.0, Alembic, Django ORM]
+  - group: Интеграции
+    items: [REST API, Webhooks, KYC]
+  - group: Инфраструктура
+    items: [Docker, Linux, Nginx, Git, GitHub Actions]
+  - group: Тестирование и качество
+    items: [pytest, ruff, mypy]
+
+projects:
+  - slug: telegram-bots-platform
+    name: Платформа Telegram-ботов
+    summary: Бэкенд семейства Telegram-ботов с интеграцией внешних сервисов
+    problem: |
+      Компании нужно работать с множеством внешних провайдеров
+      в нескольких ботах одновременно, а операторам — быстро обрабатывать заявки
+      и видеть статистику.
+    solution: |
+      Django-проект с модульной архитектурой: внешние сервисы подключаются
+      через единый интерфейс, есть KYC и 2FA, админ-панель для операторов,
+      статистика, промо-механики и cron-рассылки.
+    results:
+      - 10+ интеграций с внешними API
+      - 1 000+ заявок в день
+      - 500+ коммитов с августа 2024
+    stack: [Python, Django, pyTelegramBotAPI, PostgreSQL, Docker]
+    links:
+      repo: null
+      demo: null
+    featured: true
+
+  - slug: jobradar
+    name: JobRadar
+    summary: Telegram-бот, который собирает вакансии из нескольких источников и ведёт трекер откликов
+    problem: |
+      Вакансии разбросаны по hh.ru, getmatch, Хабр Карьере и Telegram-каналам —
+      мониторить их вручную долго и легко что-то пропустить.
+    solution: |
+      Асинхронный агрегатор: парсеры источников по расписанию, скоринг вакансий
+      под заданные фильтры, уведомления в Telegram и трекер статусов откликов.
+    results:
+      - 4 источника вакансий
+      - 200+ вакансий в день после фильтрации
+    stack: [Python, aiogram 3, FastAPI, SQLAlchemy 2.0, Alembic, Docker, pytest]
+    links:
+      repo: https://github.com/2Neo2/jobradar
+      demo: null
+    featured: true
+
+  - slug: portfolio-site
+    name: Этот сайт
+    summary: Сайт-визитка на FastAPI с JSON API, тестами, Docker и CI/CD
+    problem: |
+      Нужна визитка, которая не только рассказывает о навыках, но и показывает их.
+    solution: |
+      FastAPI + Jinja2, контент в YAML с валидацией через Pydantic, публичный
+      JSON API, тесты на pytest, Docker и деплой через GitHub Actions.
+    results:
+      - Покрытие тестами 85%+
+      - Lighthouse 90+
+    stack: [Python, FastAPI, Pydantic, Jinja2, Docker, GitHub Actions]
+    links:
+      repo: https://github.com/2Neo2/portfolio-site
+      demo: null
+    featured: false
+
+experience:
+  - company: Финтех-компания
+    role: Python Backend Developer
+    period: 2024 — н.в.
+    highlights:
+      - Разработка и поддержка бэкенда Telegram-ботов
+      - Интеграция внешних API, KYC и двухфакторной аутентификации
+      - Админ-панель и статистика для операторов
+
+education:
+  - title: Python-разработчик
+    org: Онлайн-школа
+    year: 2023
+    url: null
+  - title: Бакалавриат, прикладная информатика
+    org: Университет
+    year: 2024
+    url: null
+
+learning_now: [Асинхронный Python, PostgreSQL под нагрузкой, System Design]
