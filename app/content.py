@@ -1,7 +1,9 @@
 from functools import lru_cache
 from pathlib import Path
+from typing import Annotated
 
 import yaml
+from fastapi import Depends
 from pydantic import ValidationError
 
 from app.config import get_settings
@@ -29,3 +31,6 @@ def load_content(path: Path) -> SiteContent:
 @lru_cache
 def get_content() -> SiteContent:
     return load_content(get_settings().content_path)
+
+
+ContentDep = Annotated[SiteContent, Depends(get_content)]

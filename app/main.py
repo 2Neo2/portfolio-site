@@ -6,6 +6,7 @@ from fastapi.staticfiles import StaticFiles
 
 from app.config import BASE_DIR, get_settings
 from app.content import get_content
+from app.routers import api
 
 STATIC_DIR = BASE_DIR / "app" / "static"
 
@@ -30,6 +31,8 @@ def create_app() -> FastAPI:
     @app.get("/health", tags=["service"], summary="Проверка работоспособности")
     async def health() -> dict[str, str]:
         return {"status": "ok"}
+
+    app.include_router(api.router)
 
     return app
 
