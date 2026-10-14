@@ -36,6 +36,9 @@ projects:
       - 10+ интеграций
       - Стабильная работа
     stack: [Python, Django, Docker]
+    screenshots:
+      - src: /static/img/projects/alpha/main.jpg
+        alt: Экран альфы
     featured: true
 
   - slug: beta
@@ -54,7 +57,9 @@ projects:
     name: Гамма
     summary: Третий проект
     problem: Задача гаммы
-    solution: Решение гаммы
+    screenshots:
+      - src: /static/img/projects/gamma/main.jpg
+        alt: Главный экран гаммы
     stack: [Go]
     in_progress: true
 

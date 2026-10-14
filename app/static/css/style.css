@@ -903,6 +903,55 @@ a:hover {
   grid-column: 1 / -1;
 }
 
+/* Обложка карточки: скриншот до краёв карточки (у карточки padding 28px + рамка 1px) */
+.project-cover {
+  display: block;
+  width: calc(100% + 56px);
+  max-width: none;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  margin: -28px -28px 4px;
+  border-bottom: 1px solid var(--border);
+  border-radius: calc(var(--radius) - 1px) calc(var(--radius) - 1px) 0 0;
+  object-fit: cover;
+  object-position: top;
+}
+
+.screenshots {
+  display: grid;
+  gap: 20px;
+  margin-top: 40px;
+}
+
+.screenshot {
+  margin: 0;
+}
+
+.screenshot a {
+  display: block;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+}
+
+.screenshot img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: transform 0.4s;
+}
+
+.screenshot a:hover img {
+  transform: scale(1.015);
+}
+
+.screenshot figcaption {
+  margin-top: 10px;
+  color: var(--text-faint);
+  font-size: 14px;
+}
+
 .badge-progress {
   display: inline-flex;
   align-items: center;

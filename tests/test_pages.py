@@ -322,3 +322,31 @@ def test_in_progress_badge(client: TestClient) -> None:
         '<span class="badge-progress">In progress</span>'
         in client.get("/en/projects/gamma").text
     )
+
+
+def test_project_screenshots(client: TestClient) -> None:
+    html = client.get("/projects/gamma").text
+
+    assert (
+        '<img src="/static/img/projects/gamma/main.jpg" alt="Главный экран гаммы"'
+        in html
+    )
+    assert "<figcaption>Главный экран гаммы</figcaption>" in html
+
+
+def test_project_without_solution_hides_section(client: TestClient) -> None:
+    assert "<h2>Решение</h2>" not in client.get("/projects/gamma").text
+    assert "<h2>Решение</h2>" in client.get("/projects/beta").text
+
+
+def test_cover_on_card_only_with_screenshots(client: TestClient) -> None:
+    html = client.get("/").text
+    grid = html.split('class="projects-grid"')[1].split("</section>")[0]
+    cards = grid.split("<article ")[1:]
+
+    alpha = next(card for card in cards if 'href="/projects/alpha"' in card)
+    beta = next(card for card in cards if 'href="/projects/beta"' in card)
+    assert (
+        '<img class="project-cover" src="/static/img/projects/alpha/main.jpg"' in alpha
+    )
+    assert "project-cover" not in beta

@@ -51,27 +51,20 @@ skills:
 projects:
   - slug: viralscope
     name: ViralScope
-    summary: Backend for a viral Reels discovery service — collecting Instagram videos by niche, scoring virality and explaining videos with Claude
+    summary: "A viral Reels discovery service: collects Instagram videos by niche, scores their virality and uses Claude to explain why a video went viral and how to shoot your own"
     problem: |
-      Content creators need to know which Reels go viral in their niche and why.
-      Finding such videos by hand and figuring out how to shoot a similar one takes a lot of time.
-    solution: |
-      An agent collects Instagram videos for the client's niche, calculates a virality
-      score and uses Claude to explain why a video went viral and how to shoot your own.
-      The FastAPI backend skeleton is ready: settings via pydantic-settings, structured
-      structlog logging with secret masking and a request_id in every response, a unified
-      API error format, a Docker stack with PostgreSQL and Redis, and log collection into
-      Grafana via Alloy and Loki. Next on the roadmap: sign-in, quiz and niches, payments,
-      video collection and the virality formula, Claude video analysis and Celery background jobs.
-    results:
-      - Stage 1 of 14 done — app skeleton, logging, errors, Docker and Grafana
-      - The full history of any request can be found in Grafana by its X-Request-ID
-      - Passwords, tokens and sign-in codes are masked in logs automatically
+      Businesses, bloggers and regular users need to know which Reels go viral
+      in their niche and why. Finding such videos by hand and figuring out how
+      to shoot a similar one takes a lot of time.
     stack: [Python, FastAPI, Pydantic, structlog, PostgreSQL, Redis, Docker, Grafana, Loki, Alloy, pytest, ruff]
     links:
       repo: https://github.com/2Neo2/viralscope-backend
+    screenshots:
+      - src: /static/img/projects/viralscope/landing.jpg
+        alt: "Landing page with cohort sign-up"
+      - src: /static/img/projects/viralscope/feed.jpg
+        alt: "Dashboard: viral video feed with a «why it went viral» breakdown"
     featured: true
-    in_progress: true
 
   - slug: hotel-booking-mini-app
     name: Hotel booking Telegram Mini App

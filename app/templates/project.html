@@ -30,6 +30,19 @@
     {% endif %}
   </header>
 
+  {% if project.screenshots %}
+    <div class="screenshots">
+      {% for shot in project.screenshots %}
+        <figure class="screenshot">
+          <a href="{{ shot.src }}" target="_blank" rel="noopener">
+            <img src="{{ shot.src }}" alt="{{ shot.alt }}" width="1440" height="900" loading="{{ 'eager' if loop.first else 'lazy' }}">
+          </a>
+          <figcaption>{{ shot.alt }}</figcaption>
+        </figure>
+      {% endfor %}
+    </div>
+  {% endif %}
+
   {% if metrics %}
     <dl class="metrics">
       {% for value, label in metrics %}
@@ -46,10 +59,12 @@
     <p>{{ project.problem }}</p>
   </section>
 
-  <section class="project-section prose">
-    <h2>{{ t.solution }}</h2>
-    <p>{{ project.solution }}</p>
-  </section>
+  {% if project.solution %}
+    <section class="project-section prose">
+      <h2>{{ t.solution }}</h2>
+      <p>{{ project.solution }}</p>
+    </section>
+  {% endif %}
 
   {% if notes %}
     <section class="project-section">

@@ -36,6 +36,9 @@ projects:
       - 10+ integrations
       - Stable operation
     stack: [Python, Django, Docker]
+    screenshots:
+      - src: /static/img/projects/alpha/main.jpg
+        alt: Alpha screen
     featured: true
 
   - slug: beta
@@ -54,7 +57,9 @@ projects:
     name: Gamma
     summary: Third project
     problem: Gamma problem
-    solution: Gamma solution
+    screenshots:
+      - src: /static/img/projects/gamma/main.jpg
+        alt: Gamma main screen
     stack: [Go]
     in_progress: true
 

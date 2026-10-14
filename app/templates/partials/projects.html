@@ -10,7 +10,10 @@
     <div class="projects-grid">
       {% for project in featured %}
         {%- set metrics, _ = project.results | split_results -%}
-        <article class="project-card">
+        <article class="project-card{% if project.screenshots %} project-card-with-cover{% endif %}">
+          {% if project.screenshots %}
+            <img class="project-cover" src="{{ project.screenshots[0].src }}" alt="" width="1440" height="900" loading="lazy">
+          {% endif %}
           {% if project.in_progress %}<p class="badge-progress">{{ t.in_progress }}</p>{% endif %}
           <h3><a class="stretched-link" href="{{ home_url }}projects/{{ project.slug }}">{{ project.name }}</a></h3>
           <p class="project-summary">{{ project.summary }}</p>

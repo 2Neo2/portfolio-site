@@ -56,15 +56,21 @@ class ProjectLinks(Schema):
     demo: HttpUrl | None = None
 
 
+class Screenshot(Schema):
+    src: str = Field(min_length=1)  # /static/img/projects/<slug>/<file>.jpg
+    alt: str = Field(min_length=1)  # подпись: что на экране
+
+
 class Project(Schema):
     slug: str = Field(pattern=r"^[a-z0-9]+(-[a-z0-9]+)*$")
     name: str = Field(min_length=1)
     summary: str
     problem: str
-    solution: str
+    solution: str | None = None
     results: list[str] = []
     stack: list[str] = []
     links: ProjectLinks = ProjectLinks()
+    screenshots: list[Screenshot] = []
     featured: bool = False
     in_progress: bool = False
 
