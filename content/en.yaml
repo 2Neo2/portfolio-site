@@ -66,22 +66,6 @@ projects:
         alt: "Dashboard: viral video feed with a «why it went viral» breakdown"
     featured: true
 
-  - slug: hotel-booking-mini-app
-    name: Hotel booking Telegram Mini App
-    summary: FastAPI backend for a hotel booking Telegram Mini App with supplier API integration
-    problem: |
-      Users need to book hotels right inside Telegram, without a separate app,
-      and booking data has to stay in sync with the supplier.
-    solution: |
-      Built a FastAPI backend: supplier API integration and real-time booking status
-      processing. Key endpoints and business logic are covered with pytest tests
-      using mock and Faker.
-    results:
-      - Booking statuses are updated in real time
-      - Key endpoints are covered with tests
-    stack: [Python, FastAPI, Telegram Mini Apps, pytest]
-    featured: true
-
   - slug: qgis-transport-plugin
     name: Moscow Region traffic flow analysis
     summary: A QGIS plugin and a DRF API for optimizing the public transport route network
@@ -107,6 +91,22 @@ projects:
         alt: "Population density layer for Moscow and the Moscow Region"
       - src: /static/img/projects/qgis-transport-plugin/municipal-routes.webp
         alt: "A municipal route network"
+    featured: true
+
+  - slug: hotel-booking-mini-app
+    name: Hotel booking Telegram Mini App
+    summary: FastAPI backend for a hotel booking Telegram Mini App with supplier API integration
+    problem: |
+      Users need to book hotels right inside Telegram, without a separate app,
+      and booking data has to stay in sync with the supplier.
+    solution: |
+      Built a FastAPI backend: supplier API integration and real-time booking status
+      processing. Key endpoints and business logic are covered with pytest tests
+      using mock and Faker.
+    results:
+      - Booking statuses are updated in real time
+      - Key endpoints are covered with tests
+    stack: [Python, FastAPI, Telegram Mini Apps, pytest]
     featured: true
 
   - slug: llm-content-bot
