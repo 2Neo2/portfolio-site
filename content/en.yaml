@@ -95,19 +95,19 @@ projects:
 
   - slug: hotel-booking-mini-app
     name: Hotel booking Telegram Mini App
-    summary: FastAPI backend for a hotel booking Telegram Mini App with supplier API integration
+    summary: A Vue 3 Telegram Mini App for searching and booking hotels with data from a provider API
     problem: |
-      Users need to book hotels right inside Telegram, without a separate app,
-      and booking data has to stay in sync with the supplier.
+      The client wanted users to search and book hotels right inside Telegram,
+      without a separate app. Hotel, price and room data comes from a provider —
+      a partner company of the client.
     solution: |
-      Built a FastAPI backend: supplier API integration and real-time booking status
-      processing. In the mini app users search hotels by city, dates, star rating and
-      meal plan, browse results with photos and prices, and see hotels on the map. Key endpoints and business logic are covered with pytest tests
-      using mock and Faker.
+      Built a mini app with Vue 3 and TypeScript that calls the provider API directly
+      for hotels, prices and rooms. Users search hotels by city, dates, star rating and
+      meal plan, browse results with photos and prices, and see hotels on the map.
+      Telegram integration is done with vue-tg.
     results:
-      - Booking statuses are updated in real time
-      - Key endpoints are covered with tests
-    stack: [Python, FastAPI, Telegram Mini Apps, pytest]
+      - Hotel search, results and map — right inside Telegram, no separate app
+    stack: [Vue 3, TypeScript, Vite, vue-tg, Telegram Mini Apps, REST API]
     screenshots:
       - src: /static/img/projects/hotel-booking-mini-app/search.webp
         alt: "Search: city, dates, star rating, meals"
@@ -173,7 +173,7 @@ experience:
     location: Moscow
     start: 2024-08
     achievements:
-      - Built a FastAPI backend for a hotel booking Telegram Mini App with supplier API integration and real-time status processing
+      - Built a hotel booking Telegram Mini App with Vue 3 and provider API integration — search, results with photos and prices, hotels on the map
       - Introduced static analysis (Bandit) and dependency scanning — vulnerabilities are now caught before release, not after
       - Built a Telegram bot with LLM integration via the OpenAI API for automated content generation — designed the architecture, tuned prompts and implemented dialogue history storage
       - Covered key endpoints and business logic with tests using pytest, mock and Faker
