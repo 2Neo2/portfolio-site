@@ -1,4 +1,4 @@
-.PHONY: run test lint fmt check hooks
+.PHONY: run test lint fmt check hooks docker-build docker-up docker-down
 
 run:
 	uv run uvicorn app.main:app --reload
@@ -19,3 +19,12 @@ check: lint test
 
 hooks:
 	uv run pre-commit install
+
+docker-build:
+	docker compose build
+
+docker-up:
+	docker compose up --build -d
+
+docker-down:
+	docker compose down

@@ -1,0 +1,19 @@
+# В образ попадают только app/, content/, pyproject.toml и uv.lock
+.git
+.github
+.venv
+.env
+tests
+**/__pycache__
+.mypy_cache
+.ruff_cache
+.pytest_cache
+.coverage
+htmlcov
+.pre-commit-config.yaml
+Dockerfile
+docker-compose.yml
+.dockerignore
+ROADMAP.md
+README.md
+Makefile

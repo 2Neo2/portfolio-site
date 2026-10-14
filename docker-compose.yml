@@ -1,0 +1,17 @@
+# Локальный запуск в Docker: docker compose up --build
+# Сайт: http://localhost:8000 (другой порт: PORT=8080 docker compose up --build)
+services:
+  web:
+    build: .
+    image: portfolio-site:latest
+    ports:
+      - "${PORT:-8000}:8000"
+    environment:
+      SITE_URL: ${SITE_URL:-http://localhost:8000}
+    restart: unless-stopped
+    # Приложению не нужно ничего писать на диск
+    read_only: true
+    tmpfs:
+      - /tmp
+    security_opt:
+      - no-new-privileges:true
