@@ -50,7 +50,7 @@ UI: Final[dict[Lang, dict[str, str]]] = {
         "more": "Подробнее",
         "other_projects": "Другие проекты",
         "experience_title": "Опыт",
-        "education_title": "Обучение",
+        "education_title": "Образование",
         "learning_now": "Изучаю сейчас",
         "contacts_text": "Если у вас есть вакансия или проект — буду рад присоединиться к команде и работать вместе. Напишите, обсудим задачи и формат работы.",
         "hh_value": "Резюме на hh.ru",
