@@ -903,20 +903,6 @@ a:hover {
   grid-column: 1 / -1;
 }
 
-/* Обложка карточки: скриншот до краёв карточки (у карточки padding 28px + рамка 1px) */
-.project-cover {
-  display: block;
-  width: calc(100% + 56px);
-  max-width: none;
-  height: auto;
-  aspect-ratio: 16 / 9;
-  margin: -28px -28px 4px;
-  border-bottom: 1px solid var(--border);
-  border-radius: calc(var(--radius) - 1px) calc(var(--radius) - 1px) 0 0;
-  object-fit: cover;
-  object-position: top;
-}
-
 .screenshots {
   display: grid;
   gap: 20px;

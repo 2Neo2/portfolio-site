@@ -339,14 +339,7 @@ def test_project_without_solution_hides_section(client: TestClient) -> None:
     assert "<h2>Решение</h2>" in client.get("/projects/beta").text
 
 
-def test_cover_on_card_only_with_screenshots(client: TestClient) -> None:
-    html = client.get("/").text
-    grid = html.split('class="projects-grid"')[1].split("</section>")[0]
-    cards = grid.split("<article ")[1:]
-
-    alpha = next(card for card in cards if 'href="/projects/alpha"' in card)
-    beta = next(card for card in cards if 'href="/projects/beta"' in card)
-    assert (
-        '<img class="project-cover" src="/static/img/projects/alpha/main.jpg"' in alpha
-    )
-    assert "project-cover" not in beta
+def test_screenshots_only_on_project_page(client: TestClient) -> None:
+    """На главной картинок проектов нет, даже если у проекта есть скриншоты."""
+    assert "/static/img/projects/alpha/main.jpg" not in client.get("/").text
+    assert "/static/img/projects/alpha/main.jpg" in client.get("/projects/alpha").text
