@@ -264,8 +264,8 @@ experience:
     end: 2025-01
     achievements:
       - Built a QGIS plugin with PyQt for analysing traffic flows and optimizing the public transport route network of the Moscow Region — the solution received the «Breakthrough of the Year» award
-      - The plugin finds the busiest municipalities, routes, segments and stops, builds new optimal routes to relieve passenger load and exports the analysis to Excel
-      - Designed and implemented a DRF API for exporting large volumes of transport data — instead of an overnight script, data is now exported asynchronously in chunks within a couple of hours; built route endpoints on top of it for the QGIS plugin
+      - Designed and implemented a DRF API for exporting large volumes of transport data; built route endpoints on top of it for the QGIS plugin
+      - Built an asynchronous script that exports transport data in the required format — chunked loading takes a couple of hours instead of an overnight script
       - Wrote the technical specification for the Moscow Region citizen appeals portal together with development teams and the customer, worked with contractors during design and acceptance
       - Received a letter of appreciation from the Deputy Chairman of the Moscow Region Government
     responsibilities:
