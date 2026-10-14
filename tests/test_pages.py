@@ -370,3 +370,11 @@ def test_project_diagram(client: TestClient, url: str, title: str) -> None:
     assert '<figure class="graph-diagram">' in html
     assert title in html
     assert "graph-diagram" not in client.get("/projects/alpha").text
+
+
+def test_project_multiple_repos(client: TestClient) -> None:
+    html = client.get("/projects/beta").text
+
+    assert 'href="https://github.com/test-user/beta"' in html
+    assert 'href="https://github.com/test-user/beta-server"' in html
+    assert "Сервер</a>" in html

@@ -149,6 +149,49 @@ projects:
     diagram: agentguard
     featured: true
 
+  - slug: teamplayer
+    name: TeamPlayer — ВКР бакалавриата
+    summary: iOS-приложение для совместного прослушивания музыки в сообществах — общий плеер, чат и плейлисты в реальном времени
+    problem: |
+      Слушать музыку вместе с друзьями на расстоянии неудобно: каждый включает трек
+      у себя, и воспроизведение расходится. Нужны общие комнаты-сообщества, где у всех
+      участников играет одно и то же и музыку можно обсуждать в чате.
+    solution: |
+      Проект из трёх частей. iOS-приложение на Swift и UIKit: главная с публичными
+      сообществами, поиск, медиатека и плейлисты, комната с общим плеером и чатом.
+      Сервер на Vapor с PostgreSQL (Fluent, миграции): пользователи и токены, комнаты —
+      публичные и по коду, участники и роль DJ, рейтинг комнат, плейлисты. Через WebSocket
+      сервер раздаёт аудио по чанкам всем участникам комнаты, синхронизирует команды
+      play / pause / next / back и ведёт чат. Отдельный сервис на FastAPI работает
+      с Яндекс Музыкой: поиск, треки, альбомы, избранное и плейлист дня.
+    results:
+      - 3 сервиса — iOS-приложение, сервер на Vapor и сервис на FastAPI
+      - Синхронное воспроизведение у всех участников комнаты через WebSocket
+      - Чат сообщества в реальном времени
+    stack: [Swift, UIKit, Vapor, Fluent, PostgreSQL, WebSocket, Python, FastAPI, Docker]
+    links:
+      repos:
+        - label: iOS-приложение
+          url: https://github.com/2Neo2/TeamPlayer
+        - label: Сервер на Vapor
+          url: https://github.com/2Neo2/TeamPlayer-main
+        - label: Сервис Яндекс Музыки
+          url: https://github.com/2Neo2/TeamPlayer-YM
+    screenshots:
+      - src: /static/img/projects/teamplayer/home.webp
+        alt: "Главная: публичные сообщества и новые треки"
+        device: mobile
+      - src: /static/img/projects/teamplayer/room.webp
+        alt: "Комната: общий плеер и чат сообщества"
+        device: mobile
+      - src: /static/img/projects/teamplayer/playlist.webp
+        alt: "Плейлист в медиатеке"
+        device: mobile
+      - src: /static/img/projects/teamplayer/members.webp
+        alt: "Управление участниками сообщества"
+        device: mobile
+    featured: true
+
   - slug: portfolio-site
     name: Этот сайт
     summary: Сайт-визитка на FastAPI с JSON API, тестами и двумя языками

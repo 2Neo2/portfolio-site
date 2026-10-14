@@ -51,8 +51,16 @@ class SkillGroup(Schema):
     items: list[str] = Field(min_length=1)
 
 
+class RepoLink(Schema):
+    label: str = Field(min_length=1)  # «iOS-приложение», «Сервер»
+    url: HttpUrl
+
+
 class ProjectLinks(Schema):
     repo: HttpUrl | None = None
+    repos: list[
+        RepoLink
+    ] = []  # несколько репозиториев с подписями — вместо или вместе с repo
     demo: HttpUrl | None = None
 
 

@@ -51,6 +51,9 @@ projects:
     stack: [Python, FastAPI]
     links:
       repo: https://github.com/test-user/beta
+      repos:
+        - label: Сервер
+          url: https://github.com/test-user/beta-server
     diagram: agentguard
     featured: true
 

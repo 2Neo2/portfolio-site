@@ -148,6 +148,49 @@ projects:
     diagram: agentguard
     featured: true
 
+  - slug: teamplayer
+    name: TeamPlayer — Bachelor's thesis
+    summary: An iOS app for listening to music together in communities — a shared player, chat and playlists in real time
+    problem: |
+      Listening to music with friends remotely is awkward: everyone starts the track
+      on their own device and playback drifts apart. Shared community rooms are needed
+      where all members hear the same thing and can discuss the music in a chat.
+    solution: |
+      The project has three parts. An iOS app in Swift and UIKit: a home screen with
+      public communities, search, a library with playlists, and a room with a shared player
+      and chat. A Vapor server with PostgreSQL (Fluent, migrations): users and tokens,
+      rooms — public or joined by code, members and the DJ role, room rating, playlists.
+      Over WebSocket the server streams audio in chunks to every member of a room, syncs
+      play / pause / next / back commands and runs the chat. A separate FastAPI service
+      works with Yandex Music: search, tracks, albums, favourites and the playlist of the day.
+    results:
+      - 3 services — iOS app, Vapor server and FastAPI service
+      - Synchronized playback for every room member over WebSocket
+      - Real-time community chat
+    stack: [Swift, UIKit, Vapor, Fluent, PostgreSQL, WebSocket, Python, FastAPI, Docker]
+    links:
+      repos:
+        - label: iOS app
+          url: https://github.com/2Neo2/TeamPlayer
+        - label: Vapor server
+          url: https://github.com/2Neo2/TeamPlayer-main
+        - label: Yandex Music service
+          url: https://github.com/2Neo2/TeamPlayer-YM
+    screenshots:
+      - src: /static/img/projects/teamplayer/home.webp
+        alt: "Home: public communities and new tracks"
+        device: mobile
+      - src: /static/img/projects/teamplayer/room.webp
+        alt: "Room: shared player and community chat"
+        device: mobile
+      - src: /static/img/projects/teamplayer/playlist.webp
+        alt: "A playlist in the library"
+        device: mobile
+      - src: /static/img/projects/teamplayer/members.webp
+        alt: "Managing community members"
+        device: mobile
+    featured: true
+
   - slug: portfolio-site
     name: This website
     summary: Portfolio website on FastAPI with a JSON API, tests and two languages
