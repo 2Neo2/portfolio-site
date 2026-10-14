@@ -56,7 +56,7 @@ projects:
       Businesses, bloggers and regular users need to know which Reels go viral
       in their niche and why. Finding such videos by hand and figuring out how
       to shoot a similar one takes a very long time.
-    stack: [Python, FastAPI, Pydantic, structlog, PostgreSQL, Redis, Docker, Grafana, Loki, Alloy, pytest, ruff]
+    stack: [Python, FastAPI, Anthropic API, Pydantic, structlog, PostgreSQL, Redis, Docker, Grafana, Loki, Alloy, pytest, ruff]
     links:
       repo: https://github.com/2Neo2/viralscope-backend
     screenshots:
