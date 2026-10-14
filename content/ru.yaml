@@ -40,7 +40,7 @@ skills:
   - group: Безопасность
     items: [OWASP Top 10, SAST, DAST, SCA, DevSecOps, Bandit]
   - group: AI и LLM
-    items: [OpenAI API, LangChain, LangGraph, LLM-агенты]
+    items: [OpenAI API, Anthropic API, LangChain, LangGraph, LLM-агенты]
   - group: Инфраструктура
     items: [Docker, Nginx, Linux, Git, GitHub, GitLab, CI/CD]
   - group: Тестирование
