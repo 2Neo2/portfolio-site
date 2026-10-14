@@ -250,9 +250,6 @@ experience:
       - Introduced two-factor authentication and KYC verification for clients
       - Built statistics on orders and referrals for operators and owners
       - Implemented promo mechanics — promo codes, discounts, cashback, bonuses and a referral program
-      - Built a hotel booking Telegram Mini App with Vue 3 and provider API integration
-      - Built a Telegram bot with LLM integration via the OpenAI API for automated content generation
-      - Introduced static analysis (Bandit) and dependency scanning — vulnerabilities are now caught before release, not after
     responsibilities:
       - Developing and maintaining the company's current projects
       - Integrating external APIs, handling callbacks and webhooks
@@ -262,7 +259,7 @@ experience:
       - Designing REST APIs with Django/DRF and FastAPI
       - Deploying and maintaining services on Linux, gunicorn and PostgreSQL
       - Working through pull requests and code review in the team's GitHub organization
-    stack: [Python, Django, DRF, FastAPI, pyTelegramBotAPI, python-telegram-bot, PostgreSQL, Redis, django-rq, Celery, RabbitMQ, Docker, Nginx, gunicorn, Linux, OpenAI API, Bandit, pytest]
+    stack: [Python, Django, DRF, FastAPI, pyTelegramBotAPI, python-telegram-bot, PostgreSQL, Redis, django-rq, Celery, RabbitMQ, Docker, Nginx, gunicorn, Linux, pytest]
 
   - company: Ministry of Transport and Road Infrastructure of the Moscow Region
     role: Chief Expert, Development Department

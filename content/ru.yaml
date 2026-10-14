@@ -251,9 +251,6 @@ experience:
       - Внедрил двухфакторную аутентификацию и KYC-верификацию клиентов
       - Сделал статистику по заказам и рефералам для операторов и владельцев
       - Реализовал промо-механики — промокоды, скидки, кешбэк, бонусы и реферальную программу
-      - Разработал Telegram Mini App для бронирования отелей на Vue 3 с интеграцией API провайдера
-      - Разработал Telegram-бота с интеграцией LLM через API OpenAI для автоматической генерации контента
-      - Внедрил статический анализ (Bandit) и проверку зависимостей — уязвимости стали находиться до релиза, а не после
     responsibilities:
       - Разработка и поддержка текущих проектов компании
       - Интеграция внешних API, обработка callback-ов и вебхуков
@@ -263,7 +260,7 @@ experience:
       - Проектирование REST API на Django/DRF и FastAPI
       - Деплой и сопровождение сервисов на Linux, gunicorn и PostgreSQL
       - Работа через pull request и код-ревью в GitHub-организации команды
-    stack: [Python, Django, DRF, FastAPI, pyTelegramBotAPI, python-telegram-bot, PostgreSQL, Redis, django-rq, Celery, RabbitMQ, Docker, Nginx, gunicorn, Linux, OpenAI API, Bandit, pytest]
+    stack: [Python, Django, DRF, FastAPI, pyTelegramBotAPI, python-telegram-bot, PostgreSQL, Redis, django-rq, Celery, RabbitMQ, Docker, Nginx, gunicorn, Linux, pytest]
 
   - company: Министерство транспорта и дорожной инфраструктуры Московской области
     role: Главный эксперт отдела разработки
