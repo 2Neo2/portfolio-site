@@ -95,7 +95,7 @@ projects:
       exports the analysis to Excel. Designed a DRF API for the data with asynchronous
       chunked loading and dedicated route endpoints used by the plugin.
     results:
-      - Optimized data export — asynchronous chunked loading via DRF in a couple of hours instead of an overnight script
+      - Optimized data export — instead of an overnight script, asynchronous chunked loading in a couple of hours
       - «Breakthrough of the Year» award
     stack: [Python, PyQt, QGIS, Django REST Framework]
     screenshots:
