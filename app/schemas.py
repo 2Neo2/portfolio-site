@@ -58,18 +58,14 @@ class RepoLink(Schema):
 
 class ProjectLinks(Schema):
     repo: HttpUrl | None = None
-    repos: list[
-        RepoLink
-    ] = []  # несколько репозиториев с подписями — вместо или вместе с repo
+    repos: list[RepoLink] = []  # несколько репозиториев с подписями — вместо или вместе с repo
     demo: HttpUrl | None = None
 
 
 class Screenshot(Schema):
     src: str = Field(min_length=1)  # /static/img/projects/<slug>/<file>.jpg
     alt: str = Field(min_length=1)  # подпись: что на экране
-    device: Literal["desktop", "mobile"] = (
-        "desktop"  # mobile — вертикальный скриншот с телефона
-    )
+    device: Literal["desktop", "mobile"] = "desktop"  # mobile — вертикальный скриншот с телефона
 
 
 class Project(Schema):
@@ -136,6 +132,4 @@ class SiteContent(Schema):
         return projects
 
     def get_project(self, slug: str) -> Project | None:
-        return next(
-            (project for project in self.projects if project.slug == slug), None
-        )
+        return next((project for project in self.projects if project.slug == slug), None)

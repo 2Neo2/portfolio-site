@@ -34,13 +34,9 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
 
     @app.exception_handler(StarletteHTTPException)
-    async def http_error_handler(
-        request: Request, exc: StarletteHTTPException
-    ) -> Response:
+    async def http_error_handler(request: Request, exc: StarletteHTTPException) -> Response:
         """Для страниц сайта — своя 404, для API и прочих ошибок — стандартный JSON."""
-        if exc.status_code != status.HTTP_404_NOT_FOUND or request.url.path.startswith(
-            "/api"
-        ):
+        if exc.status_code != status.HTTP_404_NOT_FOUND or request.url.path.startswith("/api"):
             return await http_exception_handler(request, exc)
         return pages.render(
             request,

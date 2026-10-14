@@ -67,9 +67,7 @@ def build_router(lang: Lang) -> APIRouter:
         return render(request, "index.html", lang)
 
     @router.get("/projects/{slug}", response_class=HTMLResponse)
-    async def project_detail(
-        slug: str, request: Request, contents: ContentsDep
-    ) -> HTMLResponse:
+    async def project_detail(slug: str, request: Request, contents: ContentsDep) -> HTMLResponse:
         content = contents[lang]
         project = content.get_project(slug)
         if project is None:
@@ -84,9 +82,7 @@ def build_router(lang: Lang) -> APIRouter:
             page_path=f"projects/{slug}",
             project=project,
             previous_project=projects[position - 1] if position > 0 else None,
-            next_project=projects[position + 1]
-            if position + 1 < len(projects)
-            else None,
+            next_project=projects[position + 1] if position + 1 < len(projects) else None,
         )
 
     return router

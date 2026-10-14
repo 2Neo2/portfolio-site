@@ -3,6 +3,7 @@ from datetime import date
 
 import pytest
 
+from app.i18n import Lang
 from app.periods import format_duration, format_period, months_worked, total_months
 
 TODAY = date(2026, 10, 14)
@@ -23,8 +24,8 @@ class Job:
         (Job("2023-09", "2025-01"), "en", "Sep 2023 — Jan 2025"),
     ],
 )
-def test_format_period(job: Job, lang: str, expected: str) -> None:
-    assert format_period(job, lang) == expected  # type: ignore[arg-type]
+def test_format_period(job: Job, lang: Lang, expected: str) -> None:
+    assert format_period(job, lang) == expected
 
 
 @pytest.mark.parametrize(

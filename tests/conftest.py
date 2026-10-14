@@ -24,7 +24,7 @@ def dump_yaml(path: Path, data: dict[str, Any]) -> Path:
 
 def make_settings(content_dir: Path) -> Settings:
     # _env_file=None — тесты не должны зависеть от локального .env
-    return Settings(_env_file=None, content_dir=content_dir)  # type: ignore[call-arg]
+    return Settings(_env_file=None, content_dir=content_dir)
 
 
 @pytest.fixture

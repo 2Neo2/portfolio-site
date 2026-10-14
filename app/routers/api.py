@@ -47,7 +47,5 @@ async def list_projects(
 async def get_project(slug: str, content: ContentDep) -> Project:
     project = content.get_project(slug)
     if project is None:
-        raise HTTPException(
-            status.HTTP_404_NOT_FOUND, detail=f"Проект '{slug}' не найден"
-        )
+        raise HTTPException(status.HTTP_404_NOT_FOUND, detail=f"Проект '{slug}' не найден")
     return project

@@ -100,9 +100,7 @@ def test_photo_placeholder_without_file(
     html = client.get("/").text
 
     assert 'src="/static/img/photo.jpg"' not in html
-    assert (
-        '<span class="avatar avatar-placeholder" aria-hidden="true">ТТ</span>' in html
-    )
+    assert '<span class="avatar avatar-placeholder" aria-hidden="true">ТТ</span>' in html
 
 
 def test_photo_shown_with_file(
@@ -184,9 +182,7 @@ def test_english_project_page(client: TestClient) -> None:
         ("/en/projects/beta", 'href="/projects/beta" hreflang="ru"'),
     ],
 )
-def test_language_switch_keeps_page(
-    client: TestClient, url: str, switch_to: str
-) -> None:
+def test_language_switch_keeps_page(client: TestClient, url: str, switch_to: str) -> None:
     html = client.get(url).text
 
     assert switch_to in html
@@ -195,13 +191,9 @@ def test_language_switch_keeps_page(
 def test_hreflang_alternates(client: TestClient) -> None:
     html = client.get("/projects/beta").text
 
+    assert '<link rel="alternate" hreflang="ru" href="http://localhost:8000/projects/beta">' in html
     assert (
-        '<link rel="alternate" hreflang="ru" href="http://localhost:8000/projects/beta">'
-        in html
-    )
-    assert (
-        '<link rel="alternate" hreflang="en" href="http://localhost:8000/en/projects/beta">'
-        in html
+        '<link rel="alternate" hreflang="en" href="http://localhost:8000/en/projects/beta">' in html
     )
     assert 'hreflang="x-default" href="http://localhost:8000/projects/beta"' in html
 
@@ -215,8 +207,7 @@ def test_work_formats(client: TestClient, url: str, expected: list[str]) -> None
 
     block = html.split('class="work-formats"')[1].split("</ul>")[0]
     labels = [
-        item.split("</svg>")[1].split("</li>")[0]
-        for item in block.split('class="work-format"')[1:]
+        item.split("</svg>")[1].split("</li>")[0] for item in block.split('class="work-format"')[1:]
     ]
     assert labels == expected
 
@@ -282,9 +273,7 @@ def test_experience_section(client: TestClient) -> None:
 
     assert "авг 2024 — н.в." in section
     assert "сен 2023 — янв 2025" in section
-    assert (
-        "1 год 5 мес." in section
-    )  # длительность закрытой работы не зависит от сегодняшней даты
+    assert "1 год 5 мес." in section  # длительность закрытой работы не зависит от сегодняшней даты
     assert "Тестовая компания" in section
     assert '<span class="timeline-location"> · Тестоград</span>' in section
     assert "Тестовое достижение" in section
@@ -313,24 +302,17 @@ def test_closed_source_note_is_neutral(client: TestClient) -> None:
 
 
 def test_in_progress_badge(client: TestClient) -> None:
-    assert (
-        '<span class="badge-progress">В разработке</span>'
-        in client.get("/projects/gamma").text
-    )
+    assert '<span class="badge-progress">В разработке</span>' in client.get("/projects/gamma").text
     assert "badge-progress" not in client.get("/projects/beta").text
     assert (
-        '<span class="badge-progress">In progress</span>'
-        in client.get("/en/projects/gamma").text
+        '<span class="badge-progress">In progress</span>' in client.get("/en/projects/gamma").text
     )
 
 
 def test_project_screenshots(client: TestClient) -> None:
     html = client.get("/projects/gamma").text
 
-    assert (
-        '<img src="/static/img/projects/gamma/main.jpg" alt="Главный экран гаммы"'
-        in html
-    )
+    assert '<img src="/static/img/projects/gamma/main.jpg" alt="Главный экран гаммы"' in html
     assert "<figcaption>Главный экран гаммы</figcaption>" in html
 
 
@@ -349,9 +331,7 @@ def test_mobile_screenshots_in_separate_grid(client: TestClient) -> None:
     html = client.get("/projects/gamma").text
 
     desktop = html.split('<div class="screenshots">')[1].split("</div>")[0]
-    mobile = html.split('<div class="screenshots screenshots-mobile">')[1].split(
-        "</div>"
-    )[0]
+    mobile = html.split('<div class="screenshots screenshots-mobile">')[1].split("</div>")[0]
     assert "gamma/main.jpg" in desktop
     assert "gamma/phone.jpg" in mobile
     assert "gamma/phone.jpg" not in desktop

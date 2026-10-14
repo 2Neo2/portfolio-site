@@ -53,9 +53,7 @@ def static_url(path: str) -> str:
 
 @lru_cache
 def _file_hash(path: str) -> str:
-    return hashlib.md5(
-        (STATIC_DIR / path).read_bytes(), usedforsecurity=False
-    ).hexdigest()[:8]
+    return hashlib.md5((STATIC_DIR / path).read_bytes(), usedforsecurity=False).hexdigest()[:8]
 
 
 def display_url(url: object) -> str:

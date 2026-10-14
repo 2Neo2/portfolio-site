@@ -1,6 +1,6 @@
 import pytest
 
-from app.i18n import DEFAULT_LANG, LANGUAGES, UI, home_url, lang_from_path
+from app.i18n import DEFAULT_LANG, LANGUAGES, UI, Lang, home_url, lang_from_path
 
 
 def test_default_language_is_russian() -> None:
@@ -22,8 +22,8 @@ def test_no_empty_translations() -> None:
 
 
 @pytest.mark.parametrize(("lang", "expected"), [("ru", "/"), ("en", "/en/")])
-def test_home_url(lang: str, expected: str) -> None:
-    assert home_url(lang) == expected  # type: ignore[arg-type]
+def test_home_url(lang: Lang, expected: str) -> None:
+    assert home_url(lang) == expected
 
 
 @pytest.mark.parametrize(

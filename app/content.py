@@ -35,9 +35,7 @@ def load_contents(content_dir: Path) -> Contents:
     Набор проектов во всех языках должен совпадать — иначе переключатель
     языка на странице проекта поведёт на 404.
     """
-    contents: Contents = {
-        lang: load_content(content_dir / f"{lang}.yaml") for lang in LANGUAGES
-    }
+    contents: Contents = {lang: load_content(content_dir / f"{lang}.yaml") for lang in LANGUAGES}
 
     expected = {project.slug for project in contents[DEFAULT_LANG].projects}
     for lang, content in contents.items():

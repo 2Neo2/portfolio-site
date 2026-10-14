@@ -55,7 +55,7 @@ def test_missing_language_file(
     content_dir = write_content_dir(raw_content)
     (content_dir / "en.yaml").unlink()
 
-    with pytest.raises(ContentError, match="en.yaml"):
+    with pytest.raises(ContentError, match=r"en\.yaml"):
         load_contents(content_dir)
 
 
@@ -163,12 +163,13 @@ def test_app_does_not_start_with_invalid_content(
 
 
 def test_real_content_images_exist() -> None:
-    """Каждый скриншот и фото из content/<lang>.yaml лежит в static — иначе на сайте будет битая картинка."""
+    """Каждый скриншот из content/<lang>.yaml лежит в static.
+
+    Иначе на сайте будет битая картинка.
+    """
     static_dir = BASE_DIR / "app" / "static"
     for lang, content in load_contents(BASE_DIR / "content").items():
-        paths = [
-            shot.src for project in content.projects for shot in project.screenshots
-        ]
+        paths = [shot.src for project in content.projects for shot in project.screenshots]
         for path in paths:
             assert path.startswith("/static/"), f"{lang}: {path}"
             assert (static_dir / path.removeprefix("/static/")).is_file(), (

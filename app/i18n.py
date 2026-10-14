@@ -13,9 +13,7 @@ def home_url(lang: Lang) -> str:
 
 def lang_from_path(path: str) -> Lang:
     for lang in LANGUAGES:
-        if lang != DEFAULT_LANG and (
-            path == f"/{lang}" or path.startswith(f"/{lang}/")
-        ):
+        if lang != DEFAULT_LANG and (path == f"/{lang}" or path.startswith(f"/{lang}/")):
             return lang
     return DEFAULT_LANG
 
@@ -56,7 +54,10 @@ UI: Final[dict[Lang, dict[str, str]]] = {
         "total_experience": "Общий стаж",
         "education_title": "Образование",
         "additional_education": "Дополнительное образование",
-        "contacts_text": "Если у вас есть вакансия или проект — буду рад присоединиться к команде и работать вместе.",
+        "contacts_text": (
+            "Если у вас есть вакансия или проект — "
+            "буду рад присоединиться к команде и работать вместе."
+        ),
         "hh_value": "Резюме на hh.ru",
         "resume": "Резюме",
         "resume_value": "Скачать PDF",
@@ -110,7 +111,10 @@ UI: Final[dict[Lang, dict[str, str]]] = {
         "total_experience": "Total experience",
         "education_title": "Education",
         "additional_education": "Additional education",
-        "contacts_text": "Have a job opening or a project in mind? I'd be glad to join your team and work together.",
+        "contacts_text": (
+            "Have a job opening or a project in mind? "
+            "I'd be glad to join your team and work together."
+        ),
         "hh_value": "CV on hh.ru",
         "resume": "CV",
         "resume_value": "Download PDF",

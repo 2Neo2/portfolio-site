@@ -40,3 +40,28 @@ branch = true
 show_missing = true
 skip_covered = true
 fail_under = 85
+
+[tool.ruff]
+line-length = 100
+target-version = "py314"
+
+[tool.ruff.lint]
+# E/W — стиль, F — ошибки, I — порядок импортов, B — частые баги, UP — современный синтаксис,
+# SIM — упрощения, C4 — comprehensions, PT — стиль pytest, N — имена, RUF — правила ruff
+select = ["E", "W", "F", "I", "B", "UP", "SIM", "C4", "PT", "N", "RUF"]
+ignore = [
+    "RUF001", "RUF002", "RUF003",  # кириллица в строках и комментариях — это не опечатка
+]
+
+[tool.ruff.lint.isort]
+known-first-party = ["app", "tests"]
+
+[tool.mypy]
+python_version = "3.14"
+strict = true
+plugins = ["pydantic.mypy"]
+files = ["app", "tests"]
+
+[tool.pydantic-mypy]
+init_forbid_extra = true
+init_typed = true
