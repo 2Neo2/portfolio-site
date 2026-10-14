@@ -124,34 +124,6 @@ projects:
         device: mobile
     featured: true
 
-  - slug: llm-content-bot
-    name: Telegram-бот для генерации контента на LLM
-    summary: Бот, который генерирует контент через API OpenAI и помнит историю диалога
-    problem: |
-      Нужно было автоматизировать подготовку контента с помощью LLM в привычном
-      для пользователей интерфейсе Telegram.
-    solution: |
-      Сам спроектировал архитектуру бота, интегрировал LLM через API OpenAI,
-      настроил промпты и хранение истории диалога.
-    results:
-      - Архитектура, промпты и хранение истории диалога — с нуля
-    stack: [Python, python-telegram-bot, OpenAI API]
-    featured: false
-
-  - slug: jobradar
-    name: JobRadar
-    summary: Telegram-бот, который собирает вакансии из нескольких источников и ведёт трекер откликов
-    problem: |
-      Вакансии разбросаны по hh.ru, getmatch, Хабр Карьере и Telegram-каналам —
-      мониторить их вручную долго и легко что-то пропустить.
-    solution: |
-      Асинхронный агрегатор: парсеры источников по расписанию, скоринг вакансий
-      под заданные фильтры, уведомления в Telegram и трекер статусов откликов.
-    results:
-      - 4 источника вакансий
-    stack: [Python, aiogram 3, FastAPI, SQLAlchemy 2.0, Alembic, Docker, pytest]
-    featured: false
-
   - slug: portfolio-site
     name: Этот сайт
     summary: Сайт-визитка на FastAPI с JSON API, тестами и двумя языками
