@@ -7,15 +7,18 @@ profile:
   location: Moscow
   work_formats: [remote, hybrid, office]  # remote / office / hybrid
   about: |
-    Python backend developer. I design and build REST APIs with Django/DRF and FastAPI,
-    integrate external services, set up asynchronous task processing with Celery,
-    RabbitMQ and Redis, and containerize and deploy with Docker, Nginx and Linux.
-    I pay special attention to security (SAST, SCA) and cover business logic with tests.
+    Python backend developer. At VeloxCode I develop and maintain 13 production Django
+    projects; before that, at the Moscow Region Ministry of Transport, I built a DRF API and
+    asynchronous transport data export. I write services with FastAPI, Django and Flask,
+    work with PostgreSQL, Redis and task queues, and deploy with Docker and Linux. I hold a
+    Master's in Cybersecurity from HSE University, so I pay special attention to code security,
+    and in my postgraduate studies I focus on AI and LLMs: building agents with LangGraph and
+    integrating models via the OpenAI and Anthropic APIs.
   motivation: |
-    What I like about backend is that the product depends on it directly: a slow
-    export or a missed vulnerability is noticed right away. I want to grow towards
-    high-load and asynchronous architecture, design reliable and secure systems
-    and work in a team with strong code review.
+    What I like about backend is that the product depends on it directly: a slow export
+    or a missed vulnerability is noticed right away. I want to grow towards high-load and
+    asynchronous architecture, design reliable and secure systems — including ones with
+    LLM agents — and work in a team with strong code review.
   languages:
     - name: Russian
       level: native
