@@ -246,14 +246,14 @@ experience:
     achievements:
       - Developing and maintaining 13 of the company's production projects — Django fintech services
       - Integrating partner APIs to a common standard, with fault-tolerant request handling when a provider fails
-      - Built a Telegram admin panel for operators — managing orders, balances and broadcasts
+      - Built a Telegram admin panel — managing orders, balances and broadcasts
       - Introduced two-factor authentication and KYC verification for clients
-      - Built analytics on orders and the referral program for operators and owners
+      - Built analytics on orders and the referral program
       - Implemented promo mechanics — promo codes, discounts, cashback and a referral program
     responsibilities:
       - Developing and maintaining the company's current projects
       - Integrating external APIs, handling callbacks and webhooks
-      - Improving admin panels and operator tools
+      - Improving admin panels and internal tools
       - Background jobs and queues with Redis and django-rq, scheduled broadcasts
       - Investigating production incidents from logs and fixing bugs
       - Designing REST APIs with Django/DRF and FastAPI
