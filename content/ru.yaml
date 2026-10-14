@@ -124,6 +124,36 @@ projects:
         device: mobile
     featured: true
 
+  - slug: gabriel-spa
+    name: Габриэль — сайт СПА-студии
+    summary: Сайт СПА-студии в Норильске на Flask — каталог из 110 услуг с ценами и онлайн-запись через YCLIENTS
+    problem: |
+      Студии нужен собственный сайт с актуальным прайсом и онлайн-записью. Услуги, цены
+      и запись уже ведутся в YCLIENTS, поэтому сайт должен брать данные оттуда, а не
+      дублировать их вручную.
+    solution: |
+      Flask-приложение с фабрикой create_app и блюпринтами, модели категорий и услуг
+      на SQLAlchemy. Прайс импортируется из выгрузки YCLIENTS CLI-командой flask import-xls —
+      149 услуг, а на сайт попадают только доступные в онлайн-записи. Кнопка «Записаться»
+      открывает YCLIENTS сразу на нужной услуге или мастере. Дизайн — тёмная палитра
+      и анимации на чистом JavaScript без тяжёлых библиотек, с учётом prefers-reduced-motion.
+      Страницы покрыты тестами на pytest.
+    results:
+      - 110 услуг с онлайн-записью из 149 в прайсе YCLIENTS
+      - Запись в один клик сразу на нужную услугу
+      - Обновление прайса одной командой из выгрузки YCLIENTS
+    stack: [Python, Flask, SQLAlchemy, SQLite, YCLIENTS, JavaScript, pytest, gunicorn]
+    screenshots:
+      - src: /static/img/projects/gabriel-spa/home.jpg
+        alt: "Главная страница"
+      - src: /static/img/projects/gabriel-spa/menu.jpg
+        alt: "Категории услуг с анимированными иллюстрациями"
+      - src: /static/img/projects/gabriel-spa/services.jpg
+        alt: "Прайс: 110 процедур в 11 направлениях"
+      - src: /static/img/projects/gabriel-spa/service.jpg
+        alt: "Страница услуги с записью на выбранное время"
+    featured: true
+
   - slug: agentguard
     name: AgentGuard — ВКР магистратуры
     summary: "Система защиты LLM-агентов от эскалации привилегий через атаки на LLM: каждое действие агента проверяется до выполнения"

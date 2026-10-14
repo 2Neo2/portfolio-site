@@ -123,6 +123,36 @@ projects:
         device: mobile
     featured: true
 
+  - slug: gabriel-spa
+    name: Gabriel — SPA studio website
+    summary: A Flask website for a SPA studio in Norilsk — a catalogue of 110 services with prices and online booking via YCLIENTS
+    problem: |
+      The studio needed its own website with an up-to-date price list and online booking.
+      Services, prices and bookings already live in YCLIENTS, so the website has to take
+      the data from there instead of duplicating it by hand.
+    solution: |
+      A Flask app with a create_app factory and blueprints, SQLAlchemy models for categories
+      and services. The price list is imported from a YCLIENTS export with the flask import-xls
+      CLI command — 149 services, of which only those available for online booking reach the
+      site. The «Book» button opens YCLIENTS right on the chosen service or master. The design
+      uses a dark palette and plain JavaScript animations without heavy libraries, respecting
+      prefers-reduced-motion. Pages are covered with pytest tests.
+    results:
+      - 110 bookable services out of 149 in the YCLIENTS price list
+      - One-click booking straight to the chosen service
+      - Price list updated with a single command from a YCLIENTS export
+    stack: [Python, Flask, SQLAlchemy, SQLite, YCLIENTS, JavaScript, pytest, gunicorn]
+    screenshots:
+      - src: /static/img/projects/gabriel-spa/home.jpg
+        alt: "Home page"
+      - src: /static/img/projects/gabriel-spa/menu.jpg
+        alt: "Service categories with animated illustrations"
+      - src: /static/img/projects/gabriel-spa/services.jpg
+        alt: "Price list: 110 treatments in 11 categories"
+      - src: /static/img/projects/gabriel-spa/service.jpg
+        alt: "Service page with booking for a chosen time"
+    featured: true
+
   - slug: agentguard
     name: AgentGuard — Master's thesis
     summary: "Protecting LLM agents from privilege escalation via attacks on the LLM: every agent action is checked before it runs"
