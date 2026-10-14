@@ -1,10 +1,11 @@
 {% from "partials/icons.html" import icon %}
 {%- set profile = content.profile -%}
 {%- set contacts = profile.contacts -%}
+{%- set api_url = "/api/profile" if lang == default_lang else "/api/profile?lang=" ~ lang -%}
 <section class="hero container">
   <div class="hero-text">
     {% if profile.open_to_work %}
-      <p class="status"><span class="status-dot" aria-hidden="true"></span>Открыт к предложениям</p>
+      <p class="status"><span class="status-dot" aria-hidden="true"></span>{{ t.open_to_work }}</p>
     {% endif %}
 
     <div class="hero-identity">
@@ -23,9 +24,18 @@
     </div>
 
     <p class="hero-tagline">{{ profile.tagline }}</p>
-    <p class="hero-location">{{ icon("pin") }}{{ profile.location }}</p>
+    <div class="hero-meta">
+      <span class="hero-location">{{ icon("pin") }}{{ profile.location }}</span>
+      {% if profile.work_formats %}
+        <ul class="work-formats" aria-label="{{ t.work_format_label }}">
+          {% for work_format in profile.work_formats %}
+            <li class="work-format">{{ icon(work_format) }}{{ t["work_format_" ~ work_format] }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </div>
 
-    <ul class="hero-contacts" aria-label="Контакты">
+    <ul class="hero-contacts" aria-label="{{ t.contacts_label }}">
       <li>
         <a href="{{ contacts.telegram }}" target="_blank" rel="noopener">
           {{ icon("telegram") }}{{ contacts.telegram | display_url }}
@@ -48,26 +58,29 @@
 
     <div class="actions">
       <a class="btn btn-primary" href="{{ contacts.telegram }}" target="_blank" rel="noopener">
-        {{ icon("telegram") }}Написать в Telegram
+        {{ icon("telegram") }}{{ t.write_telegram }}
       </a>
       {% if has_resume %}
-        <a class="btn" href="{{ profile.resume_url }}" download>{{ icon("download") }}Скачать резюме</a>
+        <a class="btn" href="{{ profile.resume_url }}" download>{{ icon("download") }}{{ t.download_resume }}</a>
       {% endif %}
     </div>
   </div>
 
-  <figure class="code-card" aria-label="Пример ответа API этого сайта">
+  <figure class="code-card" aria-label="{{ t.api_example }}">
     <div class="code-bar">
-      <span><span class="code-method">GET</span> /api/profile</span>
+      <span><span class="code-method">GET</span> {{ api_url }}</span>
       <span class="code-status">200 OK</span>
     </div>
     <pre><code>{
   <span class="tok-key">"name"</span>: <span class="tok-str">"{{ profile.name }}"</span>,
   <span class="tok-key">"title"</span>: <span class="tok-str">"{{ profile.title }}"</span>,
   <span class="tok-key">"location"</span>: <span class="tok-str">"{{ profile.location }}"</span>,
+  <span class="tok-key">"work_formats"</span>: [{% for work_format in profile.work_formats %}
+    <span class="tok-str">"{{ work_format }}"</span>{% if not loop.last %},{% endif %}{% endfor %}
+  ],
   <span class="tok-key">"open_to_work"</span>: <span class="tok-bool">{{ "true" if profile.open_to_work else "false" }}</span>,
   <span class="tok-muted">…</span>
 }</code></pre>
-    <a class="code-foot" href="/docs">Открыть API в Swagger {{ icon("arrow-right") }}</a>
+    <a class="code-foot" href="/docs">{{ t.open_swagger }} {{ icon("arrow-right") }}</a>
   </figure>
 </section>

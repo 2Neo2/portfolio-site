@@ -2,10 +2,13 @@ from pathlib import Path
 from typing import Annotated
 
 import yaml
-from fastapi import Depends, Request
+from fastapi import Depends, Query, Request
 from pydantic import ValidationError
 
+from app.i18n import DEFAULT_LANG, LANGUAGES, Lang
 from app.schemas import SiteContent
+
+Contents = dict[Lang, SiteContent]
 
 
 class ContentError(Exception):
@@ -26,10 +29,40 @@ def load_content(path: Path) -> SiteContent:
         raise ContentError(f"Ошибка в содержимом {path}:\n{exc}") from exc
 
 
-def get_content(request: Request) -> SiteContent:
+def load_contents(content_dir: Path) -> Contents:
+    """Загружает content/<lang>.yaml для каждого языка.
+
+    Набор проектов во всех языках должен совпадать — иначе переключатель
+    языка на странице проекта поведёт на 404.
+    """
+    contents: Contents = {
+        lang: load_content(content_dir / f"{lang}.yaml") for lang in LANGUAGES
+    }
+
+    expected = {project.slug for project in contents[DEFAULT_LANG].projects}
+    for lang, content in contents.items():
+        slugs = {project.slug for project in content.projects}
+        if slugs != expected:
+            missing = ", ".join(sorted(expected - slugs)) or "—"
+            extra = ", ".join(sorted(slugs - expected)) or "—"
+            raise ContentError(
+                f"Проекты в {lang}.yaml не совпадают с {DEFAULT_LANG}.yaml: "
+                f"не хватает [{missing}], лишние [{extra}]"
+            )
+    return contents
+
+
+def get_contents(request: Request) -> Contents:
     """Контент загружается один раз при старте приложения (см. lifespan в main.py)."""
-    content: SiteContent = request.app.state.content
-    return content
+    contents: Contents = request.app.state.contents
+    return contents
+
+
+def get_content(
+    request: Request,
+    lang: Annotated[Lang, Query(description="Язык контента")] = DEFAULT_LANG,
+) -> SiteContent:
+    return get_contents(request)[lang]
 
 
 ContentDep = Annotated[SiteContent, Depends(get_content)]

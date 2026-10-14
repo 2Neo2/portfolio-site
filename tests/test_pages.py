@@ -1,3 +1,4 @@
+import re
 from pathlib import Path
 
 import pytest
@@ -142,3 +143,101 @@ def test_hero_contacts(client: TestClient) -> None:
 )
 def test_file_available_without_static_file(url: str | None, expected: bool) -> None:
     assert pages.file_available(url) is expected
+
+
+def test_russian_is_default(client: TestClient) -> None:
+    html = client.get("/").text
+
+    assert '<html lang="ru">' in html
+    assert "Обо мне" in html
+
+
+def test_english_index(client: TestClient) -> None:
+    response = client.get("/en/")
+
+    assert response.status_code == 200
+    html = response.text
+    assert '<html lang="en">' in html
+    assert "<title>Test Testov — Python Backend Developer</title>" in html
+    assert "Open to work" in html
+    assert "About" in html
+    assert 'href="/en/projects/alpha"' in html
+    assert "Обо мне" not in html
+
+
+def test_english_index_without_trailing_slash_redirects(client: TestClient) -> None:
+    response = client.get("/en", follow_redirects=False)
+
+    assert response.status_code in (307, 308)
+    assert response.headers["location"].endswith("/en/")
+
+
+def test_english_project_page(client: TestClient) -> None:
+    response = client.get("/en/projects/beta")
+
+    assert response.status_code == 200
+    html = response.text
+    assert "Beta problem" in html
+    assert 'href="/en/projects/alpha"' in html
+
+
+@pytest.mark.parametrize(
+    ("url", "switch_to"),
+    [
+        ("/", 'href="/en/" hreflang="en"'),
+        ("/en/", 'href="/" hreflang="ru"'),
+        ("/projects/beta", 'href="/en/projects/beta" hreflang="en"'),
+        ("/en/projects/beta", 'href="/projects/beta" hreflang="ru"'),
+    ],
+)
+def test_language_switch_keeps_page(
+    client: TestClient, url: str, switch_to: str
+) -> None:
+    html = client.get(url).text
+
+    assert switch_to in html
+
+
+def test_hreflang_alternates(client: TestClient) -> None:
+    html = client.get("/projects/beta").text
+
+    assert (
+        '<link rel="alternate" hreflang="ru" href="http://localhost:8000/projects/beta">'
+        in html
+    )
+    assert (
+        '<link rel="alternate" hreflang="en" href="http://localhost:8000/en/projects/beta">'
+        in html
+    )
+    assert 'hreflang="x-default" href="http://localhost:8000/projects/beta"' in html
+
+
+@pytest.mark.parametrize(
+    ("url", "expected"),
+    [("/", ["Удалёнка", "Гибрид"]), ("/en/", ["Remote", "Hybrid"])],
+)
+def test_work_formats(client: TestClient, url: str, expected: list[str]) -> None:
+    html = client.get(url).text
+
+    block = html.split('class="work-formats"')[1].split("</ul>")[0]
+    labels = [
+        item.split("</svg>")[1].split("</li>")[0]
+        for item in block.split('class="work-format"')[1:]
+    ]
+    assert labels == expected
+
+
+def test_static_assets_have_version(client: TestClient) -> None:
+    """У CSS/JS в ссылке есть хэш содержимого — браузер не покажет старую версию."""
+    html = client.get("/").text
+
+    assert re.search(r'href="/static/css/style\.css\?v=[0-9a-f]{8}"', html)
+    assert re.search(r'src="/static/js/theme\.js\?v=[0-9a-f]{8}"', html)
+
+
+def test_english_404(client: TestClient) -> None:
+    response = client.get("/en/projects/unknown")
+
+    assert response.status_code == 404
+    assert '<html lang="en">' in response.text
+    assert "Page not found" in response.text

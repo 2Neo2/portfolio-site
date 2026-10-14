@@ -1,4 +1,8 @@
+from typing import Literal
+
 from pydantic import BaseModel, ConfigDict, EmailStr, Field, HttpUrl, field_validator
+
+WorkFormat = Literal["remote", "office", "hybrid"]
 
 
 class Schema(BaseModel):
@@ -17,6 +21,7 @@ class Profile(Schema):
     title: str = Field(min_length=1)
     tagline: str
     location: str
+    work_formats: list[WorkFormat] = []
     about: str
     motivation: str
     contacts: Contacts

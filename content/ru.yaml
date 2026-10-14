@@ -4,7 +4,8 @@ profile:
   name: Иван Доронин
   title: Python Backend Developer
   tagline: Разрабатываю бэкенд финтех-сервисов и Telegram-ботов
-  location: Москва · Remote
+  location: Москва
+  work_formats: [remote, hybrid, office]  # remote / office / hybrid
   about: |
     Python backend-разработчик с опытом 2+ года. Делаю сервисы, где важны
     надёжность: интеграции с внешними сервисами, обработка заявок, админ-панели

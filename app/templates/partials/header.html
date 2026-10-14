@@ -1,17 +1,28 @@
 {% from "partials/icons.html" import icon %}
 <header class="site-header">
   <div class="container header-inner">
-    <a class="logo" href="/">{{ content.profile.name }}</a>
-    <nav class="nav" aria-label="Разделы">
-      <a href="/#about">Обо мне</a>
-      <a href="/#stack">Стек</a>
-      <a href="/#projects">Проекты</a>
-      <a href="/#experience">Опыт</a>
-      <a href="/#contacts">Контакты</a>
+    <a class="logo" href="{{ home_url }}">{{ content.profile.name }}</a>
+    <nav class="nav" aria-label="{{ t.nav_label }}">
+      <a href="{{ home_url }}#about">{{ t.nav_about }}</a>
+      <a href="{{ home_url }}#stack">{{ t.nav_stack }}</a>
+      <a href="{{ home_url }}#projects">{{ t.nav_projects }}</a>
+      <a href="{{ home_url }}#experience">{{ t.nav_experience }}</a>
+      <a href="{{ home_url }}#contacts">{{ t.nav_contacts }}</a>
     </nav>
-    <button class="theme-toggle" type="button" aria-label="Переключить тему" data-theme-toggle>
-      <span class="theme-icon-moon">{{ icon("moon") }}</span>
-      <span class="theme-icon-sun">{{ icon("sun") }}</span>
-    </button>
+    <div class="header-actions">
+      <nav class="lang-switch" aria-label="{{ t.language_label }}">
+        {% for code in languages %}
+          {% if code == lang %}
+            <span class="lang-current" aria-current="page">{{ code | upper }}</span>
+          {% else %}
+            <a href="{{ alternate_urls[code] }}" hreflang="{{ code }}" lang="{{ code }}">{{ code | upper }}</a>
+          {% endif %}
+        {% endfor %}
+      </nav>
+      <button class="theme-toggle" type="button" aria-label="{{ t.theme_toggle }}" data-theme-toggle>
+        <span class="theme-icon-moon">{{ icon("moon") }}</span>
+        <span class="theme-icon-sun">{{ icon("sun") }}</span>
+      </button>
+    </div>
   </div>
 </header>

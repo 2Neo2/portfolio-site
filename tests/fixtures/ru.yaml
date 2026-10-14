@@ -5,6 +5,7 @@ profile:
   title: Python Backend Developer
   tagline: Тестовый слоган
   location: Тестоград
+  work_formats: [remote, hybrid]
   about: Тестовый текст обо мне.
   motivation: Тестовая мотивация.
   contacts:

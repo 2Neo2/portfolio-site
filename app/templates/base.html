@@ -1,20 +1,25 @@
 <!doctype html>
-<html lang="ru">
+<html lang="{{ lang }}">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{% block title %}{{ content.profile.name }} — {{ content.profile.title }}{% endblock %}</title>
   <meta name="description" content="{% block description %}{{ content.profile.tagline }}{% endblock %}">
   <meta property="og:type" content="website">
+  <meta property="og:locale" content="{{ t.og_locale }}">
   <meta property="og:title" content="{{ self.title() }}">
   <meta property="og:description" content="{{ self.description() }}">
+  {% for code in languages %}
+  <link rel="alternate" hreflang="{{ code }}" href="{{ site_url }}{{ alternate_urls[code] }}">
+  {% endfor %}
+  <link rel="alternate" hreflang="x-default" href="{{ site_url }}{{ alternate_urls[default_lang] }}">
   <meta name="theme-color" content="#f7f6f2" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">
-  <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="{{ static_url('favicon.svg') }}" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400..700&family=JetBrains+Mono:wght@400;500&display=swap">
-  <link rel="stylesheet" href="/static/css/style.css">
+  <link rel="stylesheet" href="{{ static_url('css/style.css') }}">
   <script>
     // Тему выставляем до отрисовки, чтобы не было вспышки светлой темы
     try {
@@ -22,10 +27,10 @@
       if (theme) document.documentElement.dataset.theme = theme;
     } catch (e) {}
   </script>
-  <script src="/static/js/theme.js" defer></script>
+  <script src="{{ static_url('js/theme.js') }}" defer></script>
 </head>
 <body>
-  <a class="skip-link" href="#main">К содержимому</a>
+  <a class="skip-link" href="#main">{{ t.skip_to_content }}</a>
 
   {% include "partials/header.html" %}
 

@@ -4,14 +4,14 @@
 <section id="projects" class="section container">
   <header class="section-head">
     <span class="section-num">03</span>
-    <h2>Проекты</h2>
+    <h2>{{ t.projects_title }}</h2>
   </header>
   <div class="section-body">
     <div class="projects-grid">
       {% for project in featured %}
         {%- set metrics, _ = project.results | split_results -%}
         <article class="project-card">
-          <h3><a class="stretched-link" href="/projects/{{ project.slug }}">{{ project.name }}</a></h3>
+          <h3><a class="stretched-link" href="{{ home_url }}projects/{{ project.slug }}">{{ project.name }}</a></h3>
           <p class="project-summary">{{ project.summary }}</p>
           {% if metrics %}
             <dl class="card-metrics">
@@ -26,17 +26,17 @@
           <ul class="tags tags-sm">
             {% for item in project.stack %}<li class="tag">{{ item }}</li>{% endfor %}
           </ul>
-          <span class="more" aria-hidden="true">Подробнее {{ icon("arrow-right") }}</span>
+          <span class="more" aria-hidden="true">{{ t.more }} {{ icon("arrow-right") }}</span>
         </article>
       {% endfor %}
     </div>
 
     {% if others %}
-      <p class="eyebrow list-title">Другие проекты</p>
+      <p class="eyebrow list-title">{{ t.other_projects }}</p>
       <ul class="project-list">
         {% for project in others %}
           <li>
-            <a href="/projects/{{ project.slug }}">
+            <a href="{{ home_url }}projects/{{ project.slug }}">
               <span>
                 <span class="project-list-name">{{ project.name }}</span>
                 <span class="project-list-summary">{{ project.summary }}</span>

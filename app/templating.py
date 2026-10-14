@@ -1,8 +1,11 @@
+import hashlib
 import re
 from collections.abc import Iterable
 from datetime import date
+from functools import lru_cache
 
 from fastapi.templating import Jinja2Templates
+from jinja2 import StrictUndefined
 
 from app.config import BASE_DIR
 
@@ -32,12 +35,30 @@ def split_results(results: Iterable[str]) -> tuple[list[Metric], list[str]]:
     return metrics, notes
 
 
+def static_url(path: str) -> str:
+    """URL статики с версией по содержимому файла: style.css?v=1a2b3c4d.
+
+    Файл поменялся — поменялась ссылка, и браузер не покажет старую закэшированную версию.
+    """
+    return f"/static/{path}?v={_file_hash(path)}"
+
+
+@lru_cache
+def _file_hash(path: str) -> str:
+    return hashlib.md5(
+        (STATIC_DIR / path).read_bytes(), usedforsecurity=False
+    ).hexdigest()[:8]
+
+
 def display_url(url: object) -> str:
     """https://github.com/2Neo2 -> github.com/2Neo2"""
     return str(url).removeprefix("https://").removeprefix("http://").rstrip("/")
 
 
 templates = Jinja2Templates(directory=TEMPLATES_DIR)
+# Опечатка в имени переменной или ключе перевода — ошибка, а не пустая строка на сайте
+templates.env.undefined = StrictUndefined
 templates.env.filters["split_results"] = split_results
 templates.env.filters["display_url"] = display_url
 templates.env.globals["current_year"] = date.today().year
+templates.env.globals["static_url"] = static_url

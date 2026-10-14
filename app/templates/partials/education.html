@@ -3,7 +3,7 @@
 <section id="education" class="section container">
   <header class="section-head">
     <span class="section-num">05</span>
-    <h2>Обучение</h2>
+    <h2>{{ t.education_title }}</h2>
   </header>
   <div class="section-body">
     {% if content.education %}
@@ -28,7 +28,7 @@
 
     {% if content.learning_now %}
       <div class="learning">
-        <p class="eyebrow">Изучаю сейчас</p>
+        <p class="eyebrow">{{ t.learning_now }}</p>
         <ul class="tags">
           {% for item in content.learning_now %}<li class="tag tag-outline">{{ item }}</li>{% endfor %}
         </ul>

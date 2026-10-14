@@ -8,7 +8,8 @@ from fastapi.staticfiles import StaticFiles
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
 from app.config import Settings, get_settings
-from app.content import get_content, load_content
+from app.content import load_contents
+from app.i18n import lang_from_path
 from app.routers import api, pages
 from app.templating import STATIC_DIR
 
@@ -16,7 +17,7 @@ from app.templating import STATIC_DIR
 @asynccontextmanager
 async def lifespan(app: FastAPI) -> AsyncIterator[None]:
     # fail fast: битый контент не даст приложению стартовать
-    app.state.content = load_content(app.state.settings.content_path)
+    app.state.contents = load_contents(app.state.settings.content_dir)
     yield
 
 
@@ -44,7 +45,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         return pages.render(
             request,
             "404.html",
-            get_content(request),
+            lang_from_path(request.url.path),
             status_code=status.HTTP_404_NOT_FOUND,
         )
 
@@ -53,7 +54,8 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         return {"status": "ok"}
 
     app.include_router(api.router)
-    app.include_router(pages.router)
+    for router in pages.routers:
+        app.include_router(router)
 
     return app
 

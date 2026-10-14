@@ -2,9 +2,8 @@
 {%- set contacts = content.profile.contacts -%}
 <section id="contacts" class="container contact">
   <div class="contact-panel">
-    <p class="eyebrow">Контакты</p>
-    <h2 class="contact-title">Давайте поговорим</h2>
-    <p class="contact-text">Если у вас есть вакансия или проект — напишите, обсудим задачи и формат работы.</p>
+    <h2 class="eyebrow">{{ t.nav_contacts }}</h2>
+    <p class="contact-text">{{ t.contacts_text }}</p>
 
     <ul class="contact-links">
       <li>
@@ -29,14 +28,14 @@
         <li>
           <a href="{{ contacts.hh }}" target="_blank" rel="noopener">
             <span class="contact-icon">{{ icon("briefcase") }}</span>
-            <span><span class="contact-label">hh.ru</span><span class="contact-value">Резюме на hh.ru</span></span>
+            <span><span class="contact-label">hh.ru</span><span class="contact-value">{{ t.hh_value }}</span></span>
           </a>
         </li>
       {% elif has_resume %}
         <li>
           <a href="{{ content.profile.resume_url }}" download>
             <span class="contact-icon">{{ icon("download") }}</span>
-            <span><span class="contact-label">Резюме</span><span class="contact-value">Скачать PDF</span></span>
+            <span><span class="contact-label">{{ t.resume }}</span><span class="contact-value">{{ t.resume_value }}</span></span>
           </a>
         </li>
       {% endif %}

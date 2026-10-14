@@ -98,3 +98,27 @@ def test_openapi_schema(client: TestClient) -> None:
         "/api/projects",
         "/api/projects/{slug}",
     }
+
+
+def test_profile_in_english(client: TestClient) -> None:
+    response = client.get("/api/profile?lang=en")
+
+    assert response.status_code == 200
+    assert response.json()["name"] == "Test Testov"
+
+
+def test_profile_work_formats(client: TestClient) -> None:
+    assert client.get("/api/profile").json()["work_formats"] == ["remote", "hybrid"]
+
+
+def test_project_in_english(client: TestClient) -> None:
+    response = client.get("/api/projects/beta?lang=en")
+
+    assert response.status_code == 200
+    assert response.json()["name"] == "Beta"
+
+
+def test_unsupported_language(client: TestClient) -> None:
+    response = client.get("/api/profile?lang=de")
+
+    assert response.status_code == 422

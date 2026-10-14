@@ -1,0 +1,116 @@
+# WARNING: placeholder data. Numbers and wording are stubs — replace with real ones.
+# Project slugs must match content/ru.yaml.
+
+profile:
+  name: Ivan Doronin
+  title: Python Backend Developer
+  tagline: I build backends for fintech services and Telegram bots
+  location: Moscow
+  work_formats: [remote, hybrid, office]  # remote / office / hybrid
+  about: |
+    Python backend developer with 2+ years of experience. I build services where
+    reliability matters: external integrations, order processing and admin
+    panels for operators. I value clear architecture and code that is easy to maintain.
+  motivation: |
+    I love backend because the business depends on it directly: if a request gets
+    lost, everyone notices. I want to grow towards high-load and asynchronous
+    architecture, design systems that handle growing traffic calmly, and work
+    in a team with strong code review.
+  contacts:
+    telegram: https://t.me/username
+    github: https://github.com/2Neo2
+    email: ivandoronin22@gmail.com
+    hh: null
+  resume_url: /static/resume.pdf
+  photo_url: /static/img/photo.jpg
+  open_to_work: true
+
+skills:
+  - group: Languages & frameworks
+    items: [Python, Django, FastAPI, aiogram, pyTelegramBotAPI]
+  - group: Databases
+    items: [PostgreSQL, SQLite, Redis, SQLAlchemy 2.0, Alembic, Django ORM]
+  - group: Integrations
+    items: [REST API, Webhooks, KYC]
+  - group: Infrastructure
+    items: [Docker, Linux, Nginx, Git, GitHub Actions]
+  - group: Testing & quality
+    items: [pytest, ruff, mypy]
+
+projects:
+  - slug: telegram-bots-platform
+    name: Telegram bot platform
+    summary: Backend for a family of Telegram bots with external service integrations
+    problem: |
+      The company needs to work with many external providers
+      across several bots at once, while operators need to handle orders quickly
+      and see statistics.
+    solution: |
+      A modular Django project: external services plug in through a unified
+      interface, with KYC and 2FA, an admin panel for operators, statistics,
+      promo mechanics and scheduled broadcasts.
+    results:
+      - 10+ external API integrations
+      - 1,000+ orders per day
+      - 500+ commits since August 2024
+    stack: [Python, Django, pyTelegramBotAPI, PostgreSQL, Docker]
+    links:
+      repo: null
+      demo: null
+    featured: true
+
+  - slug: jobradar
+    name: JobRadar
+    summary: A Telegram bot that aggregates job openings from several sources and tracks applications
+    problem: |
+      Job openings are scattered across hh.ru, getmatch, Habr Career and Telegram
+      channels — monitoring them by hand takes time and it's easy to miss something.
+    solution: |
+      An asynchronous aggregator: scheduled source parsers, scoring of openings
+      against custom filters, Telegram notifications and an application tracker.
+    results:
+      - 4 job sources
+      - 200+ openings per day after filtering
+    stack: [Python, aiogram 3, FastAPI, SQLAlchemy 2.0, Alembic, Docker, pytest]
+    links:
+      repo: https://github.com/2Neo2/jobradar
+      demo: null
+    featured: true
+
+  - slug: portfolio-site
+    name: This website
+    summary: Portfolio website on FastAPI with a JSON API, tests, Docker and CI/CD
+    problem: |
+      I needed a portfolio site that doesn't just list my skills but demonstrates them.
+    solution: |
+      FastAPI + Jinja2, YAML content validated with Pydantic, a public JSON API,
+      pytest tests, Docker and deployment via GitHub Actions.
+    results:
+      - 85%+ test coverage
+      - Lighthouse 90+
+    stack: [Python, FastAPI, Pydantic, Jinja2, Docker, GitHub Actions]
+    links:
+      repo: https://github.com/2Neo2/portfolio-site
+      demo: null
+    featured: false
+
+experience:
+  - company: Fintech company
+    role: Python Backend Developer
+    period: 2024 — present
+    highlights:
+      - Developing and maintaining the backend of Telegram bots
+      - Integrating external APIs, KYC and two-factor authentication
+      - Admin panel and statistics for operators
+
+education:
+  - title: Python Developer
+    org: Online school
+    year: 2023
+    url: null
+  - title: Bachelor's degree, Applied Computer Science
+    org: University
+    year: 2024
+    url: null
+
+learning_now: [Async Python, PostgreSQL under load, System Design]

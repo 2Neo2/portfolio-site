@@ -5,27 +5,33 @@ from typing import Any
 import pytest
 from fastapi.testclient import TestClient
 
-from app.config import BASE_DIR, Settings
-from app.content import ContentError, load_content
+from app.config import BASE_DIR
+from app.content import ContentError, load_content, load_contents
+from app.i18n import LANGUAGES
 from app.main import create_app
-from tests.conftest import CONTENT_FIXTURE
-
-WriteContent = Callable[[dict[str, Any]], Path]
+from tests.conftest import CONTENT_FIXTURE, FIXTURES_DIR, WriteContent, make_settings
 
 
 def test_real_content_is_valid() -> None:
-    """Настоящий content/content.yaml должен проходить валидацию — иначе сайт не стартует."""
-    content = load_content(BASE_DIR / "content" / "content.yaml")
+    """Настоящие content/<lang>.yaml должны проходить валидацию — иначе сайт не стартует."""
+    contents = load_contents(BASE_DIR / "content")
 
-    assert content.profile.name
-    assert content.projects
+    assert set(contents) == set(LANGUAGES)
+    for content in contents.values():
+        assert content.profile.name
+        assert content.projects
 
 
-def test_fixture_content_is_loaded() -> None:
-    content = load_content(CONTENT_FIXTURE)
+def test_fixture_contents_are_loaded() -> None:
+    contents = load_contents(FIXTURES_DIR)
 
-    assert content.profile.name == "Тест Тестов"
-    assert [project.slug for project in content.projects] == ["alpha", "beta", "gamma"]
+    assert contents["ru"].profile.name == "Тест Тестов"
+    assert contents["en"].profile.name == "Test Testov"
+    assert [project.slug for project in contents["en"].projects] == [
+        "alpha",
+        "beta",
+        "gamma",
+    ]
 
 
 def test_get_project() -> None:
@@ -41,6 +47,16 @@ def test_get_project() -> None:
 def test_missing_file(tmp_path: Path) -> None:
     with pytest.raises(ContentError, match="не найден"):
         load_content(tmp_path / "nope.yaml")
+
+
+def test_missing_language_file(
+    raw_content: dict[str, Any], write_content_dir: WriteContent
+) -> None:
+    content_dir = write_content_dir(raw_content)
+    (content_dir / "en.yaml").unlink()
+
+    with pytest.raises(ContentError, match="en.yaml"):
+        load_contents(content_dir)
 
 
 def test_broken_yaml_syntax(tmp_path: Path) -> None:
@@ -75,6 +91,11 @@ def test_broken_yaml_syntax(tmp_path: Path) -> None:
             id="invalid-url",
         ),
         pytest.param(
+            lambda data: data["profile"].update(work_formats=["freelance"]),
+            "profile.work_formats.0",
+            id="unknown-work-format",
+        ),
+        pytest.param(
             lambda data: data["projects"][0].update(slug="Bad Slug"),
             "projects.0.slug",
             id="invalid-slug",
@@ -106,12 +127,26 @@ def test_invalid_content(
     assert error_part in str(exc_info.value)
 
 
+def test_projects_must_match_between_languages(
+    raw_content: dict[str, Any], write_content_dir: WriteContent
+) -> None:
+    """Иначе переключатель языка на странице проекта вёл бы на 404."""
+    raw_content["projects"][2]["slug"] = "delta"
+
+    with pytest.raises(ContentError) as exc_info:
+        load_contents(write_content_dir(raw_content))
+
+    message = str(exc_info.value)
+    assert "не хватает [delta]" in message
+    assert "лишние [gamma]" in message
+
+
 def test_app_does_not_start_with_invalid_content(
-    raw_content: dict[str, Any], write_content: WriteContent
+    raw_content: dict[str, Any], write_content_dir: WriteContent
 ) -> None:
     """Fail fast: с битым контентом приложение падает при старте, а не на первом запросе."""
     raw_content["profile"].pop("name")
-    settings = Settings(_env_file=None, content_path=write_content(raw_content))  # type: ignore[call-arg]
+    settings = make_settings(write_content_dir(raw_content))
 
     with pytest.raises(ContentError), TestClient(create_app(settings)):
         pass

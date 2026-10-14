@@ -1,0 +1,68 @@
+# Test content (English). Slugs must match ru.yaml.
+
+profile:
+  name: Test Testov
+  title: Python Backend Developer
+  tagline: Test tagline
+  location: Testville
+  work_formats: [remote, hybrid]
+  about: Test about text.
+  motivation: Test motivation.
+  contacts:
+    telegram: https://t.me/test_user
+    github: https://github.com/test-user
+    email: test@example.com
+    hh: null
+  resume_url: /static/resume.pdf
+  photo_url: /static/img/photo.jpg
+  open_to_work: true
+
+skills:
+  - group: Languages
+    items: [Python, SQL]
+  - group: Infrastructure
+    items: [Docker, Linux]
+
+projects:
+  - slug: alpha
+    name: Alpha
+    summary: First project
+    problem: Alpha problem
+    solution: Alpha solution
+    results:
+      - 10+ integrations
+      - Stable operation
+    stack: [Python, Django, Docker]
+    featured: true
+
+  - slug: beta
+    name: Beta
+    summary: Second project
+    problem: Beta problem
+    solution: Beta solution
+    results:
+      - 1,000+ requests per day
+    stack: [Python, FastAPI]
+    links:
+      repo: https://github.com/test-user/beta
+    featured: true
+
+  - slug: gamma
+    name: Gamma
+    summary: Third project
+    problem: Gamma problem
+    solution: Gamma solution
+    stack: [Go]
+
+experience:
+  - company: Test company
+    role: Python Developer
+    period: 2024 — present
+    highlights: [Built test things]
+
+education:
+  - title: Test course
+    org: Test school
+    year: 2023
+
+learning_now: [System Design]

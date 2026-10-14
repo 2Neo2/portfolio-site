@@ -15,7 +15,7 @@ class Settings(BaseSettings):
 
     app_name: str = "Ivan Doronin — Python Backend Developer"
     debug: bool = False
-    content_path: Path = BASE_DIR / "content" / "content.yaml"
+    content_dir: Path = BASE_DIR / "content"
     site_url: str = "http://localhost:8000"
 
 
