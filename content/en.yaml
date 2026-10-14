@@ -9,13 +9,10 @@ profile:
   about: |
     Python backend developer. At VeloxCode I develop and maintain 13 production Django
     projects; before that, at the Moscow Region Ministry of Transport, I built a DRF API and
-    asynchronous transport data export. I write services with FastAPI, Django and Flask,
-    work with PostgreSQL, Redis and task queues, and deploy with Docker and Linux. I hold a
-    Master's in Cybersecurity from HSE University, so I pay special attention to code security,
-    and in my postgraduate studies I focus on AI and LLMs: building agents with LangGraph and
-    integrating models via the OpenAI and Anthropic APIs. I'm also growing in Web3: analysing
-    on-chain data on Solana and EVM networks — transactions, Jito bundles, Uniswap pools and
-    smart contract events via RPC and block explorers.
+    asynchronous transport data export. I hold a Master's in Cybersecurity from HSE University,
+    so I pay special attention to code security, and in my postgraduate studies I focus on AI
+    and LLMs: building agents with LangGraph and integrating models via the OpenAI and Anthropic
+    APIs. I'm also growing in Web3 — analysing on-chain data on Solana and EVM networks.
   motivation: |
     What I like about backend is that the product depends on it directly: a slow export
     or a missed vulnerability is noticed right away. I want to grow towards high-load and
