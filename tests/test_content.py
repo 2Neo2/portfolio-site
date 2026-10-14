@@ -174,3 +174,12 @@ def test_real_content_images_exist() -> None:
             assert (static_dir / path.removeprefix("/static/")).is_file(), (
                 f"{lang}: нет файла {path}"
             )
+
+
+def test_real_content_diagrams_exist() -> None:
+    templates_dir = BASE_DIR / "app" / "templates" / "diagrams"
+    for lang, content in load_contents(BASE_DIR / "content").items():
+        for project in content.projects:
+            if project.diagram:
+                path = templates_dir / f"{project.diagram}.html"
+                assert path.is_file(), f"{lang}: нет схемы {path}"

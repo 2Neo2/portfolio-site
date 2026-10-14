@@ -74,6 +74,9 @@ class Project(Schema):
     stack: list[str] = []
     links: ProjectLinks = ProjectLinks()
     screenshots: list[Screenshot] = []
+    diagram: str | None = Field(
+        default=None, pattern=r"^[a-z0-9-]+$"
+    )  # app/templates/diagrams/<diagram>.html
     featured: bool = False
     in_progress: bool = False
 

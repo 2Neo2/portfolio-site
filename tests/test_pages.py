@@ -355,3 +355,18 @@ def test_mobile_screenshots_in_separate_grid(client: TestClient) -> None:
     assert "gamma/main.jpg" in desktop
     assert "gamma/phone.jpg" in mobile
     assert "gamma/phone.jpg" not in desktop
+
+
+@pytest.mark.parametrize(
+    ("url", "title"),
+    [
+        ("/projects/beta", "Контроль привилегий"),
+        ("/en/projects/beta", "Privilege control"),
+    ],
+)
+def test_project_diagram(client: TestClient, url: str, title: str) -> None:
+    html = client.get(url).text
+
+    assert '<figure class="graph-diagram">' in html
+    assert title in html
+    assert "graph-diagram" not in client.get("/projects/alpha").text

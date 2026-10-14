@@ -146,6 +146,7 @@ projects:
     stack: [Python, LangGraph, LangChain, Ollama, Llama 2]
     links:
       repo: https://github.com/lalmark/agentguard-llm-security
+    diagram: agentguard
     featured: true
 
   - slug: portfolio-site

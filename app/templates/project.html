@@ -30,6 +30,10 @@
     {% endif %}
   </header>
 
+  {% if project.diagram %}
+    {% include "diagrams/" ~ project.diagram ~ ".html" %}
+  {% endif %}
+
   {% if project.screenshots %}
     {%- set desktop_shots = project.screenshots | selectattr("device", "equalto", "desktop") | list -%}
     {%- set mobile_shots = project.screenshots | selectattr("device", "equalto", "mobile") | list -%}

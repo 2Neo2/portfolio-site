@@ -1,0 +1,93 @@
+{#- Схема агентского графа AgentGuard (app/graph/graph.py). Цвета — из CSS-переменных сайта, подписи — на языке страницы. -#}
+{%- set L = {
+  "ru": {
+    "title": "Схема агентского графа AgentGuard",
+    "desc": "Запрос проходит разбор, оценку риска и план действия. Контроль привилегий либо разрешает выполнение в песочнице, либо блокирует действие. В обоих случаях решение пишется в аудит, затем формируется ответ.",
+    "caption": "Агентский граф на LangGraph: каждое действие проходит проверку до выполнения",
+    "start": "Запрос пользователя",
+    "n1": ["Разбор запроса", "поиск признаков prompt injection"],
+    "n2": ["Оценка риска", "0–100 · low · medium · high"],
+    "n3": ["План действия", "что агент собирается сделать"],
+    "n4": ["Контроль привилегий", "политика по правам user · admin · root"],
+    "n5": ["Выполнение", "в песочнице"],
+    "n6": ["Аудит", "решение и причина → JSONL"],
+    "n7": ["Ответ пользователю", "локальная LLM · Ollama, Llama 2"],
+    "allow": "разрешить",
+    "block": "заблокировать",
+  },
+  "en": {
+    "title": "AgentGuard agent graph",
+    "desc": "A request goes through parsing, risk scoring and action planning. Privilege control either allows sandboxed execution or blocks the action. Either way the decision is audited, then a response is generated.",
+    "caption": "LangGraph agent graph: every action is checked before it runs",
+    "start": "User request",
+    "n1": ["Request parsing", "prompt injection detection"],
+    "n2": ["Risk scoring", "0–100 · low · medium · high"],
+    "n3": ["Action plan", "what the agent wants to do"],
+    "n4": ["Privilege control", "policy by user · admin · root rights"],
+    "n5": ["Execution", "in a sandbox"],
+    "n6": ["Audit", "decision and reason → JSONL"],
+    "n7": ["Response", "local LLM · Ollama, Llama 2"],
+    "allow": "allow",
+    "block": "block",
+  },
+}[lang] -%}
+
+{%- macro node(num, x, y, w, label, extra_class="") -%}
+<g class="graph-node {{ extra_class }}">
+  <rect x="{{ x }}" y="{{ y }}" width="{{ w }}" height="60" rx="12"></rect>
+  <circle class="graph-num-bg" cx="{{ x + 28 }}" cy="{{ y + 30 }}" r="13"></circle>
+  <text class="graph-num" x="{{ x + 28 }}" y="{{ y + 34.5 }}" text-anchor="middle">{{ num }}</text>
+  <text class="graph-title" x="{{ x + 52 }}" y="{{ y + 26 }}">{{ label[0] }}</text>
+  <text class="graph-sub" x="{{ x + 52 }}" y="{{ y + 45 }}">{{ label[1] }}</text>
+</g>
+{%- endmacro -%}
+
+<figure class="graph-diagram">
+  <svg viewBox="-12 0 464 800" role="img" aria-labelledby="graph-title graph-desc">
+    <title id="graph-title">{{ L.title }}</title>
+    <desc id="graph-desc">{{ L.desc }}</desc>
+    <defs>
+      <marker id="graph-arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+        <path class="graph-arrowhead" d="M 0 0 L 10 5 L 0 10 z"></path>
+      </marker>
+    </defs>
+
+    {# Начало #}
+    <g class="graph-terminal">
+      <rect x="120" y="0" width="200" height="36" rx="18"></rect>
+      <text x="220" y="23" text-anchor="middle">{{ L.start }}</text>
+    </g>
+
+    {# Рёбра основного потока #}
+    <path class="graph-edge" d="M 220 36 V 68" marker-end="url(#graph-arrow)"></path>
+    <path class="graph-edge" d="M 220 130 V 158" marker-end="url(#graph-arrow)"></path>
+    <path class="graph-edge" d="M 220 220 V 248" marker-end="url(#graph-arrow)"></path>
+    <path class="graph-edge" d="M 220 310 V 338" marker-end="url(#graph-arrow)"></path>
+
+    {# Развилка после контроля привилегий #}
+    <path class="graph-edge graph-edge-allow" d="M 150 400 V 468" marker-end="url(#graph-arrow)"></path>
+    <text class="graph-branch graph-branch-allow" x="158" y="440">{{ L.allow }}</text>
+    <path class="graph-edge graph-edge-block" d="M 345 400 V 578" marker-end="url(#graph-arrow)"></path>
+    <text class="graph-branch graph-branch-block" x="353" y="500">{{ L.block }}</text>
+
+    {# После выполнения — аудит, затем ответ #}
+    <path class="graph-edge" d="M 150 530 V 578" marker-end="url(#graph-arrow)"></path>
+    <path class="graph-edge" d="M 220 640 V 668" marker-end="url(#graph-arrow)"></path>
+    <path class="graph-edge" d="M 220 730 V 760" marker-end="url(#graph-arrow)"></path>
+
+    {{ node(1, 60, 70, 320, L.n1) }}
+    {{ node(2, 60, 160, 320, L.n2) }}
+    {{ node(3, 60, 250, 320, L.n3) }}
+    {{ node(4, 60, 340, 320, L.n4, "graph-node-key") }}
+    {{ node(5, 20, 470, 260, L.n5) }}
+    {{ node(6, 60, 580, 320, L.n6) }}
+    {{ node(7, 60, 670, 320, L.n7) }}
+
+    {# Конец #}
+    <g class="graph-terminal">
+      <rect x="180" y="762" width="80" height="36" rx="18"></rect>
+      <text x="220" y="785" text-anchor="middle">END</text>
+    </g>
+  </svg>
+  <figcaption>{{ L.caption }}</figcaption>
+</figure>

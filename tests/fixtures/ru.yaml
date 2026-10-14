@@ -51,6 +51,7 @@ projects:
     stack: [Python, FastAPI]
     links:
       repo: https://github.com/test-user/beta
+    diagram: agentguard
     featured: true
 
   - slug: gamma
