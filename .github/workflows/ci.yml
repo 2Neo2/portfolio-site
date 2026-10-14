@@ -1,0 +1,76 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+# Новый push в ту же ветку отменяет устаревший прогон
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    name: Lint (ruff + mypy)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+      - name: Install dependencies
+        run: uv sync --frozen
+      - name: ruff check
+        run: uv run ruff check --output-format=github .
+      - name: ruff format
+        run: uv run ruff format --check .
+      - name: mypy (strict)
+        run: uv run mypy
+
+  test:
+    name: Tests (pytest)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+      - name: Install dependencies
+        run: uv sync --frozen
+      - name: pytest with coverage
+        run: uv run pytest --cov --cov-report=term-missing
+
+  docker:
+    name: Docker build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/setup-buildx-action@v3
+      - name: Build image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: false
+          load: true
+          tags: portfolio-site:ci
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+      - name: Smoke test — container becomes healthy
+        run: |
+          docker run -d --name site -p 8000:8000 portfolio-site:ci
+          for i in $(seq 1 30); do
+            status=$(docker inspect --format '{{.State.Health.Status}}' site)
+            echo "health: $status"
+            if [ "$status" = "healthy" ]; then break; fi
+            sleep 2
+          done
+          test "$status" = "healthy"
+          curl --fail --silent http://127.0.0.1:8000/ > /dev/null
+          curl --fail --silent http://127.0.0.1:8000/api/projects > /dev/null
+      - name: Container logs
+        if: always()
+        run: docker logs site || true
