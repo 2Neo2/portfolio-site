@@ -87,15 +87,15 @@ projects:
     summary: A QGIS plugin and a DRF API for optimizing the public transport route network
     problem: |
       The Moscow Region Ministry of Transport needed to find overloaded routes and
-      stops and rebuild the route network, while exporting transport data for
-      analysis took about 12 hours.
+      stops and rebuild the route network, while transport data for analysis was
+      exported by a script that had to run overnight.
     solution: |
       Built a QGIS plugin with PyQt: it finds the busiest municipalities, routes,
       segments and stops, builds new optimal routes to relieve passenger load and
-      exports the analysis to Excel. Designed a DRF API for the data, with dedicated
-      route endpoints used by the plugin.
+      exports the analysis to Excel. Designed a DRF API for the data with asynchronous
+      chunked loading and dedicated route endpoints used by the plugin.
     results:
-      - 24× faster data export — 30 minutes instead of ~12 hours
+      - Optimized data export — asynchronous chunked loading via DRF in a couple of hours instead of an overnight script
       - «Breakthrough of the Year» award
     stack: [Python, PyQt, QGIS, Django REST Framework]
     screenshots:
@@ -181,7 +181,7 @@ experience:
     achievements:
       - Built a QGIS plugin with PyQt for analysing traffic flows and optimizing the public transport route network of the Moscow Region — the solution received the «Breakthrough of the Year» award
       - The plugin finds the busiest municipalities, routes, segments and stops, builds new optimal routes to relieve passenger load and exports the analysis to Excel
-      - Designed and implemented a DRF API for exporting large volumes of transport data — export time dropped from ~12 hours to 30 minutes; built route endpoints on top of it for the QGIS plugin
+      - Designed and implemented a DRF API for exporting large volumes of transport data — instead of an overnight script, data is now exported asynchronously in chunks within a couple of hours; built route endpoints on top of it for the QGIS plugin
       - Wrote the technical specification for the Moscow Region citizen appeals portal together with development teams and the customer, worked with contractors during design and acceptance
       - Received a letter of appreciation from the Deputy Chairman of the Moscow Region Government
     responsibilities:
