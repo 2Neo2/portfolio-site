@@ -55,7 +55,7 @@ projects:
     problem: |
       Бизнесу, блогерам и обычным пользователям нужно понимать, какие Reels
       в их нише «залетают» и почему. Искать такие ролики вручную и разбирать,
-      как снять похожий, долго.
+      как снять похожий, очень долго.
     stack: [Python, FastAPI, Pydantic, structlog, PostgreSQL, Redis, Docker, Grafana, Loki, Alloy, pytest, ruff]
     links:
       repo: https://github.com/2Neo2/viralscope-backend
