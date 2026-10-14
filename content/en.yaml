@@ -124,3 +124,14 @@ additional_education:
   - title: Python Backend Developer
     org: Yandex Practicum
     period: 2026 — present
+  - title: iOS Developer
+    org: Yandex Practicum
+    period: "2025"
+  - title: Databases
+    org: HSE University
+    description: Database design
+    period: "2025"
+  - title: Algorithms and Data Structures
+    org: HSE University
+    description: Problem solving on Yandex Contest
+    period: "2025"

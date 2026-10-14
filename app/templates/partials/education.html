@@ -16,6 +16,7 @@
           </h3>
           <p class="edu-org">{{ item.org }}</p>
           {% if item.faculty %}<p class="edu-faculty">{{ item.faculty }}</p>{% endif %}
+          {% if item.description %}<p class="edu-description">{{ item.description }}</p>{% endif %}
         </div>
       </li>
     {% endfor %}

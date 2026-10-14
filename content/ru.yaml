@@ -123,3 +123,14 @@ additional_education:
   - title: Python Backend Developer
     org: Яндекс Практикум
     period: 2026 — н.в.
+  - title: iOS-разработчик
+    org: Яндекс Практикум
+    period: "2025"
+  - title: Базы данных
+    org: НИУ ВШЭ
+    description: Проектирование баз данных
+    period: "2025"
+  - title: Алгоритмы и структуры данных
+    org: НИУ ВШЭ
+    description: Решение задач в Yandex Contest
+    period: "2025"

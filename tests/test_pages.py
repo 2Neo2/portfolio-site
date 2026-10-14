@@ -275,3 +275,9 @@ def test_english_education_section(client: TestClient) -> None:
 
     assert "Bachelor&#39;s degree" in section
     assert "Additional education" in section
+
+
+def test_education_description(client: TestClient) -> None:
+    html = client.get("/").text
+
+    assert '<p class="edu-description">Тестовое пояснение</p>' in html

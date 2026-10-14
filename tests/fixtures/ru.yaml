@@ -71,3 +71,7 @@ additional_education:
   - title: Тестовый курс
     org: Тестовая школа
     period: 2026 — н.в.
+  - title: Тестовый курс с пояснением
+    org: Тестовый вуз
+    description: Тестовое пояснение
+    period: "2025"

@@ -64,6 +64,7 @@ class Education(Schema):
     degree: str | None = None  # уровень: «Бакалавриат», «Магистратура»
     org: str = Field(min_length=1)  # вуз или школа
     faculty: str | None = None
+    description: str | None = None  # пояснение к курсу
     period: str = Field(min_length=1)  # «2020 — 2024», «2026 — н.в.»
     url: HttpUrl | None = None
 
