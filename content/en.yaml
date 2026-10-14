@@ -5,7 +5,7 @@ profile:
   title: Python Backend Developer
   tagline: I design REST APIs, asynchronous services and Telegram bots with FastAPI and Django
   location: Moscow
-  work_formats: [remote, hybrid]  # remote / office / hybrid
+  work_formats: [remote, hybrid, office]  # remote / office / hybrid
   about: |
     Python backend developer. I design and build REST APIs with Django/DRF and FastAPI,
     integrate external services, set up asynchronous task processing with Celery,
