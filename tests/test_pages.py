@@ -97,14 +97,48 @@ def test_resume_button_shown_with_file(
     assert 'href="/static/resume.pdf"' in html
 
 
+def test_photo_placeholder_without_file(
+    client: TestClient, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    monkeypatch.setattr(pages, "STATIC_DIR", tmp_path)
+
+    html = client.get("/").text
+
+    assert 'src="/static/img/photo.jpg"' not in html
+    assert (
+        '<span class="avatar avatar-placeholder" aria-hidden="true">ТТ</span>' in html
+    )
+
+
+def test_photo_shown_with_file(
+    client: TestClient, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    (tmp_path / "img").mkdir()
+    (tmp_path / "img" / "photo.jpg").write_bytes(b"\xff\xd8\xff")
+    monkeypatch.setattr(pages, "STATIC_DIR", tmp_path)
+
+    html = client.get("/").text
+
+    assert 'src="/static/img/photo.jpg" alt="Тест Тестов"' in html
+    assert "avatar-placeholder" not in html
+
+
+def test_hero_contacts(client: TestClient) -> None:
+    html = client.get("/").text
+
+    hero = html.split('class="hero-contacts"')[1].split("</ul>")[0]
+    assert "t.me/test_user" in hero
+    assert 'href="mailto:test@example.com"' in hero
+    assert "github.com/test-user" in hero
+    assert "hh.ru" not in hero  # hh не указан в тестовом контенте
+
+
 @pytest.mark.parametrize(
-    ("resume_url", "expected"),
+    ("url", "expected"),
     [
         (None, False),
         ("https://example.com/resume.pdf", True),
     ],
 )
-def test_resume_available_without_static_file(
-    resume_url: str | None, expected: bool
-) -> None:
-    assert pages.resume_available(resume_url) is expected
+def test_file_available_without_static_file(url: str | None, expected: bool) -> None:
+    assert pages.file_available(url) is expected

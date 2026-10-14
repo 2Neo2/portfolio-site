@@ -10,12 +10,15 @@ from app.templating import STATIC_DIR, templates
 router = APIRouter(include_in_schema=False)
 
 
-def resume_available(resume_url: str | None) -> bool:
-    """Кнопку «Резюме» показываем, только если PDF действительно лежит в static."""
-    if resume_url is None:
+def file_available(url: str | None) -> bool:
+    """Резюме и фото показываем, только если файл действительно лежит в static.
+
+    Внешние ссылки (https://...) считаем доступными без проверки.
+    """
+    if url is None:
         return False
-    if resume_url.startswith("/static/"):
-        return (STATIC_DIR / resume_url.removeprefix("/static/")).is_file()
+    if url.startswith("/static/"):
+        return (STATIC_DIR / url.removeprefix("/static/")).is_file()
     return True
 
 
@@ -31,7 +34,8 @@ def render(
         template,
         {
             "content": content,
-            "has_resume": resume_available(content.profile.resume_url),
+            "has_resume": file_available(content.profile.resume_url),
+            "has_photo": file_available(content.profile.photo_url),
             **context,
         },
         status_code=status_code,

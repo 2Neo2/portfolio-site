@@ -1,23 +1,57 @@
 {% from "partials/icons.html" import icon %}
 {%- set profile = content.profile -%}
+{%- set contacts = profile.contacts -%}
 <section class="hero container">
   <div class="hero-text">
     {% if profile.open_to_work %}
       <p class="status"><span class="status-dot" aria-hidden="true"></span>Открыт к предложениям</p>
     {% endif %}
-    <h1 class="hero-name">{{ profile.name }}</h1>
-    <p class="hero-title">{{ profile.title }}</p>
+
+    <div class="hero-identity">
+      {% if has_photo %}
+        <img class="avatar" src="{{ profile.photo_url }}" alt="{{ profile.name }}" width="132" height="132">
+      {% else %}
+        {#- Заглушка, пока нет фото: инициалы -#}
+        <span class="avatar avatar-placeholder" aria-hidden="true">
+          {%- for part in profile.name.split()[:2] %}{{ part[0] }}{% endfor -%}
+        </span>
+      {% endif %}
+      <div>
+        <h1 class="hero-name">{{ profile.name }}</h1>
+        <p class="hero-title">{{ profile.title }}</p>
+      </div>
+    </div>
+
     <p class="hero-tagline">{{ profile.tagline }}</p>
     <p class="hero-location">{{ icon("pin") }}{{ profile.location }}</p>
+
+    <ul class="hero-contacts" aria-label="Контакты">
+      <li>
+        <a href="{{ contacts.telegram }}" target="_blank" rel="noopener">
+          {{ icon("telegram") }}{{ contacts.telegram | display_url }}
+        </a>
+      </li>
+      <li>
+        <a href="mailto:{{ contacts.email }}">{{ icon("mail") }}{{ contacts.email }}</a>
+      </li>
+      <li>
+        <a href="{{ contacts.github }}" target="_blank" rel="noopener">
+          {{ icon("github") }}{{ contacts.github | display_url }}
+        </a>
+      </li>
+      {% if contacts.hh %}
+        <li>
+          <a href="{{ contacts.hh }}" target="_blank" rel="noopener">{{ icon("briefcase") }}hh.ru</a>
+        </li>
+      {% endif %}
+    </ul>
+
     <div class="actions">
-      <a class="btn btn-primary" href="{{ profile.contacts.telegram }}" target="_blank" rel="noopener">
+      <a class="btn btn-primary" href="{{ contacts.telegram }}" target="_blank" rel="noopener">
         {{ icon("telegram") }}Написать в Telegram
       </a>
-      <a class="btn" href="{{ profile.contacts.github }}" target="_blank" rel="noopener">
-        {{ icon("github") }}GitHub
-      </a>
       {% if has_resume %}
-        <a class="btn" href="{{ profile.resume_url }}" download>{{ icon("download") }}Резюме</a>
+        <a class="btn" href="{{ profile.resume_url }}" download>{{ icon("download") }}Скачать резюме</a>
       {% endif %}
     </div>
   </div>

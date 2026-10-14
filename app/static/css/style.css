@@ -402,8 +402,8 @@ a:hover {
 
 @media (min-width: 960px) {
   .hero {
-    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
-    gap: 64px;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+    gap: 48px;
   }
 }
 
@@ -452,12 +452,56 @@ a:hover {
   }
 }
 
-.hero-text .status + .hero-name {
+.hero-text .status + .hero-identity {
   margin-top: 24px;
 }
 
+.hero-identity {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+@media (min-width: 560px) {
+  .hero-identity {
+    flex-direction: row;
+    align-items: center;
+    gap: 28px;
+  }
+}
+
+.avatar {
+  width: 104px;
+  height: 104px;
+  flex: none;
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  background: var(--surface-2);
+  box-shadow: var(--shadow);
+  object-fit: cover;
+}
+
+@media (min-width: 768px) {
+  .avatar {
+    width: 132px;
+    height: 132px;
+    border-radius: 30px;
+  }
+}
+
+.avatar-placeholder {
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, var(--accent-soft), var(--surface-2));
+  color: var(--accent);
+  font-size: clamp(2rem, 1.6rem + 1.4vw, 2.75rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
 .hero-name {
-  font-size: clamp(2.6rem, 1.6rem + 4.2vw, 4.4rem);
+  font-size: clamp(2.5rem, 1.6rem + 3.4vw, 3.75rem);
   font-weight: 700;
   line-height: 1.02;
   letter-spacing: -0.035em;
@@ -487,8 +531,40 @@ a:hover {
   font-size: 15px;
 }
 
+.hero-contacts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hero-text .hero-contacts {
+  margin-top: 24px;
+}
+
+.hero-contacts a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px 6px 12px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--text-muted);
+  font-size: 14.5px;
+  text-decoration: none;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.hero-contacts a:hover {
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+  color: var(--accent);
+}
+
 .hero-text .actions {
-  margin-top: 32px;
+  margin-top: 28px;
 }
 
 /* Анимация появления */
@@ -502,7 +578,8 @@ a:hover {
 .hero-text > :nth-child(4) { animation-delay: 0.15s; }
 .hero-text > :nth-child(5) { animation-delay: 0.2s; }
 .hero-text > :nth-child(6) { animation-delay: 0.25s; }
-.code-card { animation-delay: 0.3s; }
+.hero-text > :nth-child(7) { animation-delay: 0.3s; }
+.code-card { animation-delay: 0.35s; }
 
 @keyframes rise {
   from {

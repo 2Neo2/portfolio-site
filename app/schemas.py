@@ -21,6 +21,7 @@ class Profile(Schema):
     motivation: str
     contacts: Contacts
     resume_url: str | None = None
+    photo_url: str | None = None
     open_to_work: bool = False
 
 
