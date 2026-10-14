@@ -66,6 +66,7 @@ class Project(Schema):
     stack: list[str] = []
     links: ProjectLinks = ProjectLinks()
     featured: bool = False
+    in_progress: bool = False
 
 
 class Experience(Schema):

@@ -49,6 +49,30 @@ skills:
     items: [ООП, SOLID, DRY, KISS]
 
 projects:
+  - slug: viralscope
+    name: ViralScope
+    summary: Бэкенд сервиса поиска виральных Reels — сбор видео из Instagram по нише, расчёт виральности и разбор роликов через Claude
+    problem: |
+      Авторам контента нужно понимать, какие Reels в их нише «залетают» и почему.
+      Искать такие ролики вручную и разбирать, как снять похожий, долго.
+    solution: |
+      Агент собирает видео из Instagram по нише клиента, считает процент виральности
+      и объясняет через Claude, почему ролик «залетел» и как снять свой. Сейчас готов
+      каркас бэкенда на FastAPI: настройки через pydantic-settings, структурированные
+      логи на structlog с маскировкой секретов и request_id в каждом ответе, единый
+      формат ошибок API, Docker-стек с PostgreSQL и Redis и сбор логов в Grafana через
+      Alloy и Loki. Дальше по плану — вход, квиз и ниши, оплата, сбор видео и формула
+      виральности, разбор роликов в Claude и фоновые задачи на Celery.
+    results:
+      - Готов этап 1 из 14 — каркас приложения, логи, ошибки, Docker и Grafana
+      - По X-Request-ID в Grafana находится вся история любого запроса
+      - Пароли, токены и коды входа в логах маскируются автоматически
+    stack: [Python, FastAPI, Pydantic, structlog, PostgreSQL, Redis, Docker, Grafana, Loki, Alloy, pytest, ruff]
+    links:
+      repo: https://github.com/2Neo2/viralscope-backend
+    featured: true
+    in_progress: true
+
   - slug: hotel-booking-mini-app
     name: Бронирование отелей в Telegram Mini App
     summary: Бэкенд на FastAPI для Telegram Mini App бронирования отелей с интеграцией API поставщика

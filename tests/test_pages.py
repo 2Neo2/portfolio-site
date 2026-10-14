@@ -310,3 +310,15 @@ def test_closed_source_note_is_neutral(client: TestClient) -> None:
     html = client.get("/projects/alpha").text
 
     assert "Код проекта закрыт" in html
+
+
+def test_in_progress_badge(client: TestClient) -> None:
+    assert (
+        '<span class="badge-progress">В разработке</span>'
+        in client.get("/projects/gamma").text
+    )
+    assert "badge-progress" not in client.get("/projects/beta").text
+    assert (
+        '<span class="badge-progress">In progress</span>'
+        in client.get("/en/projects/gamma").text
+    )

@@ -10,7 +10,7 @@
   <a class="back-link" href="{{ home_url }}#projects">{{ icon("arrow-left") }}{{ t.all_projects }}</a>
 
   <header class="project-header">
-    <p class="eyebrow">{{ t.project }}</p>
+    <p class="eyebrow">{{ t.project }}{% if project.in_progress %} <span class="badge-progress">{{ t.in_progress }}</span>{% endif %}</p>
     <h1>{{ project.name }}</h1>
     <p class="lead">{{ project.summary }}</p>
     <ul class="tags">

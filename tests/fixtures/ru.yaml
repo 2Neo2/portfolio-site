@@ -56,6 +56,7 @@ projects:
     problem: Задача гаммы
     solution: Решение гаммы
     stack: [Go]
+    in_progress: true
 
 experience:
   - company: Тестовая компания
