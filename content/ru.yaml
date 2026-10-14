@@ -16,7 +16,7 @@ profile:
     и асинхронной архитектуры, проектировать системы, которые спокойно
     выдерживают рост нагрузки, и работать в команде с сильным код-ревью.
   contacts:
-    telegram: https://t.me/username
+    telegram: https://t.me/idoroninnn
     github: https://github.com/2Neo2
     email: ivandoronin22@gmail.com
     hh: null
@@ -103,13 +103,23 @@ experience:
       - Админ-панель и статистика для операторов
 
 education:
-  - title: Python-разработчик
-    org: Онлайн-школа
-    year: 2023
-    url: null
-  - title: Бакалавриат, прикладная информатика
-    org: Университет
-    year: 2024
-    url: null
+  - title: Программная инженерия
+    degree: Бакалавриат
+    org: НИУ ВШЭ, Москва
+    faculty: Факультет компьютерных наук (ФКН)
+    period: 2020 — 2024
+  - title: Кибербезопасность
+    degree: Магистратура
+    org: НИУ ВШЭ, Москва
+    faculty: Московский институт электроники и математики (МИЭМ)
+    period: 2024 — 2026
+  - title: Искусственный интеллект и машинное обучение
+    degree: Аспирантура
+    org: Московский университет «Синергия»
+    faculty: Факультет информационных технологий (ФИТ)
+    period: 2026 — н.в.
 
-learning_now: [Асинхронный Python, PostgreSQL под нагрузкой, System Design]
+additional_education:
+  - title: Python Backend Developer
+    org: Яндекс Практикум
+    period: 2026 — н.в.

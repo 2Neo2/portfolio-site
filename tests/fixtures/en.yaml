@@ -61,8 +61,13 @@ experience:
     highlights: [Built test things]
 
 education:
+  - title: Test program
+    degree: Bachelor's degree
+    org: Test University
+    faculty: Test Faculty
+    period: 2020 — 2024
+
+additional_education:
   - title: Test course
     org: Test school
-    year: 2023
-
-learning_now: [System Design]
+    period: 2026 — present

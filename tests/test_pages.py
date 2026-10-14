@@ -254,3 +254,24 @@ def test_nav_has_education_link(client: TestClient, url: str, link: str) -> None
     nav = client.get(url).text.split('<nav class="nav"')[1].split("</nav>")[0]
 
     assert link in nav
+
+
+def test_education_section(client: TestClient) -> None:
+    html = client.get("/").text
+    section = html.split('id="education"')[1].split("</section>")[0]
+
+    assert '<span class="edu-period">2020 — 2024</span>' in section
+    assert '<p class="edu-degree">Бакалавриат</p>' in section
+    assert "Тестовая программа" in section
+    assert '<p class="edu-faculty">Тестовый факультет</p>' in section
+    # дополнительное образование — отдельным блоком, без уровня
+    additional = section.split("Дополнительное образование")[1]
+    assert "Тестовый курс" in additional
+    assert "edu-degree" not in additional
+
+
+def test_english_education_section(client: TestClient) -> None:
+    section = client.get("/en/").text.split('id="education"')[1].split("</section>")[0]
+
+    assert "Bachelor&#39;s degree" in section
+    assert "Additional education" in section

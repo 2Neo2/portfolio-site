@@ -17,7 +17,7 @@ profile:
     architecture, design systems that handle growing traffic calmly, and work
     in a team with strong code review.
   contacts:
-    telegram: https://t.me/username
+    telegram: https://t.me/idoroninnn
     github: https://github.com/2Neo2
     email: ivandoronin22@gmail.com
     hh: null
@@ -104,13 +104,23 @@ experience:
       - Admin panel and statistics for operators
 
 education:
-  - title: Python Developer
-    org: Online school
-    year: 2023
-    url: null
-  - title: Bachelor's degree, Applied Computer Science
-    org: University
-    year: 2024
-    url: null
+  - title: Software Engineering
+    degree: Bachelor's degree
+    org: HSE University, Moscow
+    faculty: Faculty of Computer Science
+    period: 2020 — 2024
+  - title: Cybersecurity
+    degree: Master's degree
+    org: HSE University, Moscow
+    faculty: Moscow Institute of Electronics and Mathematics (MIEM)
+    period: 2024 — 2026
+  - title: Artificial Intelligence and Machine Learning
+    degree: Postgraduate (PhD)
+    org: Synergy University, Moscow
+    faculty: Faculty of Information Technologies
+    period: 2026 — present
 
-learning_now: [Async Python, PostgreSQL under load, System Design]
+additional_education:
+  - title: Python Backend Developer
+    org: Yandex Practicum
+    period: 2026 — present

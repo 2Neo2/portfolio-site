@@ -1,5 +1,28 @@
 {% from "partials/icons.html" import icon %}
-{% if content.education or content.learning_now %}
+
+{% macro education_list(items) %}
+  <ul class="edu-list">
+    {% for item in items %}
+      <li>
+        <span class="edu-period">{{ item.period }}</span>
+        <div>
+          {% if item.degree %}<p class="edu-degree">{{ item.degree }}</p>{% endif %}
+          <h3>
+            {% if item.url %}
+              <a href="{{ item.url }}" target="_blank" rel="noopener">{{ item.title }} {{ icon("external") }}</a>
+            {% else %}
+              {{ item.title }}
+            {% endif %}
+          </h3>
+          <p class="edu-org">{{ item.org }}</p>
+          {% if item.faculty %}<p class="edu-faculty">{{ item.faculty }}</p>{% endif %}
+        </div>
+      </li>
+    {% endfor %}
+  </ul>
+{% endmacro %}
+
+{% if content.education or content.additional_education %}
 <section id="education" class="section container">
   <header class="section-head">
     <span class="section-num">05</span>
@@ -7,31 +30,13 @@
   </header>
   <div class="section-body">
     {% if content.education %}
-      <ul class="edu-list">
-        {% for item in content.education %}
-          <li>
-            <span class="edu-year">{{ item.year }}</span>
-            <div>
-              <h3>
-                {% if item.url %}
-                  <a href="{{ item.url }}" target="_blank" rel="noopener">{{ item.title }} {{ icon("external") }}</a>
-                {% else %}
-                  {{ item.title }}
-                {% endif %}
-              </h3>
-              <p>{{ item.org }}</p>
-            </div>
-          </li>
-        {% endfor %}
-      </ul>
+      {{ education_list(content.education) }}
     {% endif %}
 
-    {% if content.learning_now %}
-      <div class="learning">
-        <p class="eyebrow">{{ t.learning_now }}</p>
-        <ul class="tags">
-          {% for item in content.learning_now %}<li class="tag tag-outline">{{ item }}</li>{% endfor %}
-        </ul>
+    {% if content.additional_education %}
+      <div class="edu-additional">
+        <h3 class="eyebrow">{{ t.additional_education }}</h3>
+        {{ education_list(content.additional_education) }}
       </div>
     {% endif %}
   </div>

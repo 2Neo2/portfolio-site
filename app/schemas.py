@@ -60,9 +60,11 @@ class Experience(Schema):
 
 
 class Education(Schema):
-    title: str
-    org: str
-    year: int
+    title: str = Field(min_length=1)  # программа: «Программная инженерия»
+    degree: str | None = None  # уровень: «Бакалавриат», «Магистратура»
+    org: str = Field(min_length=1)  # вуз или школа
+    faculty: str | None = None
+    period: str = Field(min_length=1)  # «2020 — 2024», «2026 — н.в.»
     url: HttpUrl | None = None
 
 
@@ -72,7 +74,7 @@ class SiteContent(Schema):
     projects: list[Project]
     experience: list[Experience] = []
     education: list[Education] = []
-    learning_now: list[str] = []
+    additional_education: list[Education] = []
 
     @field_validator("projects")
     @classmethod

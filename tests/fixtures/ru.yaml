@@ -61,8 +61,13 @@ experience:
     highlights: [Делал тестовые штуки]
 
 education:
+  - title: Тестовая программа
+    degree: Бакалавриат
+    org: Тестовый вуз
+    faculty: Тестовый факультет
+    period: 2020 — 2024
+
+additional_education:
   - title: Тестовый курс
     org: Тестовая школа
-    year: 2023
-
-learning_now: [System Design]
+    period: 2026 — н.в.
