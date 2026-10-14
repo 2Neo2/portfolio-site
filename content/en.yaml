@@ -32,19 +32,27 @@ profile:
 
 skills:
   - group: Languages & frameworks
-    items: [Python, FastAPI, Django, Django REST Framework, SQL]
+    items: [Python, SQL, FastAPI, Django, Django REST Framework, Flask, Pydantic, Jinja2, asyncio, aiohttp, REST API, WebSocket]
   - group: Telegram
     items: [aiogram, python-telegram-bot, pyTelegramBotAPI, Telegram Mini Apps]
-  - group: Databases & queues
-    items: [PostgreSQL, MongoDB, Redis, SQLAlchemy, Alembic, Celery, RabbitMQ]
+  - group: Databases
+    items: [PostgreSQL, MongoDB, SQLite, Redis, SQLAlchemy, Alembic, Django ORM]
+  - group: Queues & background jobs
+    items: [Celery, RabbitMQ, django-rq]
+  - group: AI & LLM
+    items: [OpenAI API, Anthropic API, LangChain, LangGraph, Ollama, LLM agents]
   - group: Security
     items: [OWASP Top 10, SAST, DAST, SCA, DevSecOps, Bandit]
-  - group: AI & LLM
-    items: [OpenAI API, Anthropic API, LangChain, LangGraph, LLM agents]
   - group: Infrastructure
-    items: [Docker, Nginx, Linux, Git, GitHub, GitLab, CI/CD]
-  - group: Testing
-    items: [pytest, mock, Faker]
+    items: [Docker, Nginx, gunicorn, Linux, Git, GitHub, GitLab, CI/CD]
+  - group: Logging & monitoring
+    items: [structlog, Grafana, Loki, Alloy]
+  - group: Testing & quality
+    items: [pytest, mock, ruff]
+  - group: Frontend & iOS
+    items: [Vue 3, TypeScript, JavaScript, Vite, Swift, UIKit, Vapor]
+  - group: GIS
+    items: [QGIS, PyQt]
   - group: Principles
     items: [OOP, SOLID, DRY, KISS]
 

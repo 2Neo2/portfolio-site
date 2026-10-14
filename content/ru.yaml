@@ -32,19 +32,27 @@ profile:
 
 skills:
   - group: Языки и фреймворки
-    items: [Python, FastAPI, Django, Django REST Framework, SQL]
+    items: [Python, SQL, FastAPI, Django, Django REST Framework, Flask, Pydantic, Jinja2, asyncio, aiohttp, REST API, WebSocket]
   - group: Telegram
     items: [aiogram, python-telegram-bot, pyTelegramBotAPI, Telegram Mini Apps]
-  - group: Базы данных и очереди
-    items: [PostgreSQL, MongoDB, Redis, SQLAlchemy, Alembic, Celery, RabbitMQ]
+  - group: Базы данных
+    items: [PostgreSQL, MongoDB, SQLite, Redis, SQLAlchemy, Alembic, Django ORM]
+  - group: Очереди и фоновые задачи
+    items: [Celery, RabbitMQ, django-rq]
+  - group: AI и LLM
+    items: [OpenAI API, Anthropic API, LangChain, LangGraph, Ollama, LLM-агенты]
   - group: Безопасность
     items: [OWASP Top 10, SAST, DAST, SCA, DevSecOps, Bandit]
-  - group: AI и LLM
-    items: [OpenAI API, Anthropic API, LangChain, LangGraph, LLM-агенты]
   - group: Инфраструктура
-    items: [Docker, Nginx, Linux, Git, GitHub, GitLab, CI/CD]
-  - group: Тестирование
-    items: [pytest, mock, Faker]
+    items: [Docker, Nginx, gunicorn, Linux, Git, GitHub, GitLab, CI/CD]
+  - group: Логи и мониторинг
+    items: [structlog, Grafana, Loki, Alloy]
+  - group: Тестирование и качество
+    items: [pytest, mock, ruff]
+  - group: Фронтенд и iOS
+    items: [Vue 3, TypeScript, JavaScript, Vite, Swift, UIKit, Vapor]
+  - group: ГИС
+    items: [QGIS, PyQt]
   - group: Принципы
     items: [ООП, SOLID, DRY, KISS]
 
