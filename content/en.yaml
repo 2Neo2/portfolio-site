@@ -81,7 +81,7 @@ projects:
     results:
       - Optimized data export — instead of an overnight script, asynchronous chunked loading in a couple of hours
       - «Breakthrough of the Year» award
-    stack: [Python, PyQt, QGIS, Django REST Framework]
+    stack: [Python, PyQt, QGIS, Django REST Framework, asyncio, aiohttp]
     screenshots:
       - src: /static/img/projects/qgis-transport-plugin/route-load.webp
         alt: "Stop and segment load along a route"
@@ -276,7 +276,7 @@ experience:
       - Data analysis and reporting
       - Designing a traffic flow monitoring system
       - Supporting and maintaining the developed services
-    stack: [Python, Django REST Framework, PyQt, QGIS]
+    stack: [Python, Django REST Framework, asyncio, aiohttp, PyQt, QGIS]
 
 education:
   - title: Software Engineering

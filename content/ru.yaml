@@ -82,7 +82,7 @@ projects:
     results:
       - Оптимизация выгрузки данных — вместо скрипта, запущенного на ночь, асинхронная загрузка по чанкам за пару часов
       - Награда «Прорыв года»
-    stack: [Python, PyQt, QGIS, Django REST Framework]
+    stack: [Python, PyQt, QGIS, Django REST Framework, asyncio, aiohttp]
     screenshots:
       - src: /static/img/projects/qgis-transport-plugin/route-load.webp
         alt: "Загруженность остановок и перегонов на маршруте"
@@ -277,7 +277,7 @@ experience:
       - Анализ данных и подготовка отчётов
       - Проектирование системы мониторинга транспортных потоков
       - Поддержка и сопровождение разработанных сервисов
-    stack: [Python, Django REST Framework, PyQt, QGIS]
+    stack: [Python, Django REST Framework, asyncio, aiohttp, PyQt, QGIS]
 
 education:
   - title: Программная инженерия
