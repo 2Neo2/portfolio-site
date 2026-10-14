@@ -4,7 +4,7 @@ run:
 	uv run uvicorn app.main:app --reload
 
 test:
-	uv run pytest
+	uv run pytest --cov
 
 lint:
 	uv run ruff check .

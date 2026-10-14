@@ -1,0 +1,66 @@
+# Тестовый контент. Не зависит от content/content.yaml, поэтому тексты сайта можно менять, не ломая тесты.
+
+profile:
+  name: Тест Тестов
+  title: Python Backend Developer
+  tagline: Тестовый слоган
+  location: Тестоград
+  about: Тестовый текст обо мне.
+  motivation: Тестовая мотивация.
+  contacts:
+    telegram: https://t.me/test_user
+    github: https://github.com/test-user
+    email: test@example.com
+    hh: null
+  resume_url: /static/resume.pdf
+  open_to_work: true
+
+skills:
+  - group: Языки
+    items: [Python, SQL]
+  - group: Инфраструктура
+    items: [Docker, Linux]
+
+projects:
+  - slug: alpha
+    name: Альфа
+    summary: Первый проект
+    problem: Задача альфы
+    solution: Решение альфы
+    results:
+      - 10+ интеграций
+      - Стабильная работа
+    stack: [Python, Django, Docker]
+    featured: true
+
+  - slug: beta
+    name: Бета
+    summary: Второй проект
+    problem: Задача беты
+    solution: Решение беты
+    results:
+      - 1 000+ запросов в день
+    stack: [Python, FastAPI]
+    links:
+      repo: https://github.com/test-user/beta
+    featured: true
+
+  - slug: gamma
+    name: Гамма
+    summary: Третий проект
+    problem: Задача гаммы
+    solution: Решение гаммы
+    stack: [Go]
+
+experience:
+  - company: Тестовая компания
+    role: Python Developer
+    period: 2024 — н.в.
+    highlights: [Делал тестовые штуки]
+
+education:
+  - title: Тестовый курс
+    org: Тестовая школа
+    year: 2023
+
+learning_now: [System Design]

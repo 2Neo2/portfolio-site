@@ -1,12 +1,10 @@
-from functools import lru_cache
 from pathlib import Path
 from typing import Annotated
 
 import yaml
-from fastapi import Depends
+from fastapi import Depends, Request
 from pydantic import ValidationError
 
-from app.config import get_settings
 from app.schemas import SiteContent
 
 
@@ -28,9 +26,10 @@ def load_content(path: Path) -> SiteContent:
         raise ContentError(f"Ошибка в содержимом {path}:\n{exc}") from exc
 
 
-@lru_cache
-def get_content() -> SiteContent:
-    return load_content(get_settings().content_path)
+def get_content(request: Request) -> SiteContent:
+    """Контент загружается один раз при старте приложения (см. lifespan в main.py)."""
+    content: SiteContent = request.app.state.content
+    return content
 
 
 ContentDep = Annotated[SiteContent, Depends(get_content)]

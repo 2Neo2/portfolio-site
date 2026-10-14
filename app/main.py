@@ -7,20 +7,21 @@ from fastapi.responses import Response
 from fastapi.staticfiles import StaticFiles
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
-from app.config import get_settings
-from app.content import get_content
+from app.config import Settings, get_settings
+from app.content import get_content, load_content
 from app.routers import api, pages
 from app.templating import STATIC_DIR
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI) -> AsyncIterator[None]:
-    get_content()  # fail fast: битый контент не даст приложению стартовать
+    # fail fast: битый контент не даст приложению стартовать
+    app.state.content = load_content(app.state.settings.content_path)
     yield
 
 
-def create_app() -> FastAPI:
-    settings = get_settings()
+def create_app(settings: Settings | None = None) -> FastAPI:
+    settings = settings or get_settings()
 
     app = FastAPI(
         title=settings.app_name,
@@ -28,6 +29,7 @@ def create_app() -> FastAPI:
         debug=settings.debug,
         lifespan=lifespan,
     )
+    app.state.settings = settings
     app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
 
     @app.exception_handler(StarletteHTTPException)
@@ -40,7 +42,10 @@ def create_app() -> FastAPI:
         ):
             return await http_exception_handler(request, exc)
         return pages.render(
-            request, "404.html", get_content(), status_code=status.HTTP_404_NOT_FOUND
+            request,
+            "404.html",
+            get_content(request),
+            status_code=status.HTTP_404_NOT_FOUND,
         )
 
     @app.get("/health", tags=["service"], summary="Проверка работоспособности")
