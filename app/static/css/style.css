@@ -755,8 +755,9 @@ a:hover {
 
 .section-head {
   display: flex;
+  flex-wrap: wrap;
   align-items: baseline;
-  gap: 14px;
+  gap: 4px 14px;
 }
 
 @media (min-width: 1024px) {
@@ -995,34 +996,108 @@ a:hover {
 
 .timeline-item {
   display: grid;
-  gap: 6px;
+  gap: 8px;
 }
 
 .timeline-item + .timeline-item {
-  margin-top: 36px;
+  margin-top: 48px;
+  padding-top: 48px;
+  border-top: 1px solid var(--border);
 }
 
 @media (min-width: 640px) {
   .timeline-item {
-    grid-template-columns: 150px minmax(0, 1fr);
+    grid-template-columns: 170px minmax(0, 1fr);
     gap: 24px;
   }
 }
 
 .timeline-period {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
   padding-top: 3px;
-  color: var(--text-faint);
+  color: var(--text-muted);
   font-family: var(--font-mono);
   font-size: 13px;
 }
 
+.timeline-duration {
+  color: var(--text-faint);
+}
+
 .timeline-item h3 {
-  font-size: 1.15rem;
+  font-size: 1.2rem;
 }
 
 .timeline-company {
-  margin-top: 2px;
+  margin-top: 4px;
+  color: var(--text);
+}
+
+.timeline-location {
   color: var(--text-muted);
+}
+
+.timeline-label {
+  margin-top: 22px;
+}
+
+.timeline-label + .bullets {
+  margin-top: 10px;
+}
+
+.timeline-details {
+  margin-top: 20px;
+}
+
+.timeline-details summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-muted);
+  font-size: 15px;
+  font-weight: 500;
+  list-style: none;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.timeline-details summary::-webkit-details-marker {
+  display: none;
+}
+
+.timeline-details summary::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(-45deg);
+  transition: transform 0.2s;
+}
+
+.timeline-details[open] summary::before {
+  transform: rotate(45deg);
+}
+
+.timeline-details summary:hover {
+  color: var(--accent);
+}
+
+.timeline-details .bullets {
+  margin-top: 10px;
+  color: var(--text-muted);
+}
+
+.timeline-stack {
+  margin-top: 22px;
+}
+
+.section-meta {
+  color: var(--text-faint);
+  font-family: var(--font-mono);
+  font-size: 13px;
 }
 
 .bullets {

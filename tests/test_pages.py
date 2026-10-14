@@ -281,3 +281,26 @@ def test_education_description(client: TestClient) -> None:
     html = client.get("/").text
 
     assert '<p class="edu-description">Тестовое пояснение</p>' in html
+
+
+def test_experience_section(client: TestClient) -> None:
+    section = client.get("/").text.split('id="experience"')[1].split("</section>")[0]
+
+    assert "авг 2024 — н.в." in section
+    assert "сен 2023 — янв 2025" in section
+    assert (
+        "1 год 5 мес." in section
+    )  # длительность закрытой работы не зависит от сегодняшней даты
+    assert "Тестовая компания" in section
+    assert '<span class="timeline-location"> · Тестоград</span>' in section
+    assert "Тестовое достижение" in section
+    assert "<summary>Обязанности</summary>" in section
+    assert '<li class="tag">FastAPI</li>' in section
+
+
+def test_english_experience_section(client: TestClient) -> None:
+    section = client.get("/en/").text.split('id="experience"')[1].split("</section>")[0]
+
+    assert "Aug 2024 — present" in section
+    assert "1 yr 5 mos" in section
+    assert "Key achievements" in section

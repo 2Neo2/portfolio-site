@@ -57,8 +57,16 @@ projects:
 experience:
   - company: Тестовая компания
     role: Python Developer
-    period: 2024 — н.в.
-    highlights: [Делал тестовые штуки]
+    location: Тестоград
+    start: 2024-08
+    achievements: [Тестовое достижение]
+    responsibilities: [Тестовая обязанность]
+    stack: [Python, FastAPI]
+  - company: Прошлая компания
+    role: Junior Developer
+    start: 2023-09
+    end: 2025-01
+    achievements: [Прошлое достижение]
 
 education:
   - title: Тестовая программа

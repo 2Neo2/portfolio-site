@@ -3,17 +3,42 @@
   <header class="section-head">
     <span class="section-num">04</span>
     <h2>{{ t.experience_title }}</h2>
+    <p class="section-meta">
+      <span class="visually-hidden">{{ t.total_experience }}: </span>{{ experience_total(content.experience, lang) }}
+    </p>
   </header>
   <ol class="section-body timeline">
     {% for job in content.experience %}
       <li class="timeline-item">
-        <p class="timeline-period">{{ job.period }}</p>
+        <p class="timeline-period">
+          <span>{{ job_period(job, lang) }}</span>
+          <span class="timeline-duration">{{ job_duration(job, lang) }}</span>
+        </p>
         <div>
           <h3>{{ job.role }}</h3>
-          <p class="timeline-company">{{ job.company }}</p>
-          {% if job.highlights %}
+          <p class="timeline-company">
+            {{ job.company }}{% if job.location %}<span class="timeline-location"> · {{ job.location }}</span>{% endif %}
+          </p>
+
+          {% if job.achievements %}
+            <p class="eyebrow timeline-label">{{ t.achievements }}</p>
             <ul class="bullets">
-              {% for highlight in job.highlights %}<li>{{ highlight }}</li>{% endfor %}
+              {% for achievement in job.achievements %}<li>{{ achievement }}</li>{% endfor %}
+            </ul>
+          {% endif %}
+
+          {% if job.responsibilities %}
+            <details class="timeline-details">
+              <summary>{{ t.responsibilities }}</summary>
+              <ul class="bullets">
+                {% for responsibility in job.responsibilities %}<li>{{ responsibility }}</li>{% endfor %}
+              </ul>
+            </details>
+          {% endif %}
+
+          {% if job.stack %}
+            <ul class="tags tags-sm timeline-stack">
+              {% for item in job.stack %}<li class="tag">{{ item }}</li>{% endfor %}
             </ul>
           {% endif %}
         </div>

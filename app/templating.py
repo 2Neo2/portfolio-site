@@ -8,6 +8,14 @@ from fastapi.templating import Jinja2Templates
 from jinja2 import StrictUndefined
 
 from app.config import BASE_DIR
+from app.i18n import Lang
+from app.periods import (
+    HasPeriod,
+    format_duration,
+    format_period,
+    months_worked,
+    total_months,
+)
 
 APP_DIR = BASE_DIR / "app"
 STATIC_DIR = APP_DIR / "static"
@@ -62,3 +70,16 @@ templates.env.filters["split_results"] = split_results
 templates.env.filters["display_url"] = display_url
 templates.env.globals["current_year"] = date.today().year
 templates.env.globals["static_url"] = static_url
+templates.env.globals["job_period"] = format_period
+
+
+def job_duration(item: HasPeriod, lang: Lang) -> str:
+    return format_duration(months_worked(item), lang)
+
+
+def experience_total(items: list[HasPeriod], lang: Lang) -> str:
+    return format_duration(total_months(items), lang)
+
+
+templates.env.globals["job_duration"] = job_duration
+templates.env.globals["experience_total"] = experience_total

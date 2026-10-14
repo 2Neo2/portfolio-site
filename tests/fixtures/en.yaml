@@ -57,8 +57,16 @@ projects:
 experience:
   - company: Test company
     role: Python Developer
-    period: 2024 — present
-    highlights: [Built test things]
+    location: Testville
+    start: 2024-08
+    achievements: [Test achievement]
+    responsibilities: [Test responsibility]
+    stack: [Python, FastAPI]
+  - company: Previous company
+    role: Junior Developer
+    start: 2023-09
+    end: 2025-01
+    achievements: [Previous achievement]
 
 education:
   - title: Test program

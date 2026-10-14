@@ -96,6 +96,16 @@ def test_broken_yaml_syntax(tmp_path: Path) -> None:
             id="unknown-work-format",
         ),
         pytest.param(
+            lambda data: data["experience"][0].update(start="08.2024"),
+            "experience.0.start",
+            id="invalid-month-format",
+        ),
+        pytest.param(
+            lambda data: data["experience"][1].update(start="2025-02", end="2025-01"),
+            "раньше start",
+            id="end-before-start",
+        ),
+        pytest.param(
             lambda data: data["projects"][0].update(slug="Bad Slug"),
             "projects.0.slug",
             id="invalid-slug",

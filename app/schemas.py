@@ -1,8 +1,18 @@
-from typing import Literal
+from typing import Annotated, Literal, Self
 
-from pydantic import BaseModel, ConfigDict, EmailStr, Field, HttpUrl, field_validator
+from pydantic import (
+    BaseModel,
+    ConfigDict,
+    EmailStr,
+    Field,
+    HttpUrl,
+    field_validator,
+    model_validator,
+)
 
 WorkFormat = Literal["remote", "office", "hybrid"]
+# Месяц в формате «2024-08»
+YearMonth = Annotated[str, Field(pattern=r"^\d{4}-(0[1-9]|1[0-2])$")]
 
 
 class Schema(BaseModel):
@@ -53,10 +63,21 @@ class Project(Schema):
 
 
 class Experience(Schema):
-    company: str
-    role: str
-    period: str
-    highlights: list[str] = []
+    company: str = Field(min_length=1)
+    role: str = Field(min_length=1)
+    location: str | None = None
+    start: YearMonth
+    end: YearMonth | None = None  # None — работаю по настоящее время
+    achievements: list[str] = []
+    responsibilities: list[str] = []
+    stack: list[str] = []
+
+    @model_validator(mode="after")
+    def check_dates_order(self) -> Self:
+        # «YYYY-MM» сравнивается как строка в правильном порядке
+        if self.end is not None and self.end < self.start:
+            raise ValueError(f"end ({self.end}) раньше start ({self.start})")
+        return self
 
 
 class Education(Schema):
