@@ -378,3 +378,9 @@ def test_project_multiple_repos(client: TestClient) -> None:
     assert 'href="https://github.com/test-user/beta"' in html
     assert 'href="https://github.com/test-user/beta-server"' in html
     assert "Сервер</a>" in html
+
+
+def test_experience_company_about(client: TestClient) -> None:
+    html = client.get("/").text
+
+    assert '<p class="timeline-about">Тестовое описание компании</p>' in html

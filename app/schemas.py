@@ -93,6 +93,7 @@ class Experience(Schema):
     company: str = Field(min_length=1)
     role: str = Field(min_length=1)
     location: str | None = None
+    about: str | None = None  # чем занимается компания
     start: YearMonth
     end: YearMonth | None = None  # None — работаю по настоящее время
     achievements: list[str] = []

@@ -71,6 +71,7 @@ experience:
   - company: Test company
     role: Python Developer
     location: Testville
+    about: Test company description
     start: 2024-08
     achievements: [Test achievement]
     responsibilities: [Test responsibility]

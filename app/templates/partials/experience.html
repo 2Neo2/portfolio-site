@@ -19,6 +19,7 @@
           <p class="timeline-company">
             {{ job.company }}{% if job.location %}<span class="timeline-location"> · {{ job.location }}</span>{% endif %}
           </p>
+          {% if job.about %}<p class="timeline-about">{{ job.about }}</p>{% endif %}
 
           {% if job.achievements %}
             <p class="eyebrow timeline-label">{{ t.achievements }}</p>

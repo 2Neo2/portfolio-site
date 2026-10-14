@@ -238,24 +238,31 @@ projects:
     featured: false
 
 experience:
-  - company: IT studio
+  - company: VeloxCode
     role: Backend Developer
     location: Moscow
+    about: Web2 product development
     start: 2024-08
     achievements:
-      - Built a hotel booking Telegram Mini App with Vue 3 and provider API integration — search, results with photos and prices, hotels on the map
+      - Developing and maintaining 13 of the company's production projects — Django fintech services
+      - Integrating partner APIs to a common standard, with fault-tolerant request handling when a provider fails
+      - Built a Telegram admin panel — managing orders, balances and broadcasts
+      - Introduced two-factor authentication and KYC verification for clients
+      - Built statistics on orders and referrals for operators and owners
+      - Implemented promo mechanics — promo codes, discounts, cashback, bonuses and a referral program
+      - Built a hotel booking Telegram Mini App with Vue 3 and provider API integration
+      - Built a Telegram bot with LLM integration via the OpenAI API for automated content generation
       - Introduced static analysis (Bandit) and dependency scanning — vulnerabilities are now caught before release, not after
-      - Built a Telegram bot with LLM integration via the OpenAI API for automated content generation — designed the architecture, tuned prompts and implemented dialogue history storage
-      - Covered key endpoints and business logic with tests using pytest, mock and Faker
     responsibilities:
-      - Designing and implementing REST APIs with Django/DRF and FastAPI
-      - Integrating external services and handling webhooks
-      - Asynchronous tasks with Celery, RabbitMQ and Redis
-      - Designing data schemas in PostgreSQL, SQLAlchemy and MongoDB
-      - Containerizing and deploying applications with Docker, Nginx and Linux
-      - Security through SAST, SCA and vulnerability fixes
-      - Taking part in CI/CD and code review
-    stack: [Python, FastAPI, Django, DRF, python-telegram-bot, OpenAI API, PostgreSQL, SQLAlchemy, MongoDB, Celery, RabbitMQ, Redis, Docker, Nginx, Linux, Bandit, pytest, mock, Faker]
+      - Developing and maintaining the company's current projects
+      - Integrating external APIs, handling callbacks and webhooks
+      - Improving admin panels and operator tools
+      - Background jobs and queues with Redis and django-rq, scheduled broadcasts
+      - Investigating production incidents from logs and fixing bugs
+      - Designing REST APIs with Django/DRF and FastAPI
+      - Deploying and maintaining services on Linux, gunicorn and PostgreSQL
+      - Working through pull requests and code review in the team's GitHub organization
+    stack: [Python, Django, DRF, FastAPI, pyTelegramBotAPI, python-telegram-bot, PostgreSQL, Redis, django-rq, Celery, RabbitMQ, Docker, Nginx, gunicorn, Linux, OpenAI API, Bandit, pytest]
 
   - company: Ministry of Transport and Road Infrastructure of the Moscow Region
     role: Chief Expert, Development Department

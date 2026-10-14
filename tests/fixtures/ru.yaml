@@ -74,6 +74,7 @@ experience:
   - company: Тестовая компания
     role: Python Developer
     location: Тестоград
+    about: Тестовое описание компании
     start: 2024-08
     achievements: [Тестовое достижение]
     responsibilities: [Тестовая обязанность]
