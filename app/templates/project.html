@@ -31,16 +31,20 @@
   </header>
 
   {% if project.screenshots %}
-    <div class="screenshots">
-      {% for shot in project.screenshots %}
-        <figure class="screenshot">
-          <a href="{{ shot.src }}" target="_blank" rel="noopener">
-            <img src="{{ shot.src }}" alt="{{ shot.alt }}" loading="{{ 'eager' if loop.first else 'lazy' }}" decoding="async">
-          </a>
-          <figcaption>{{ shot.alt }}</figcaption>
-        </figure>
-      {% endfor %}
-    </div>
+    {%- set desktop_shots = project.screenshots | selectattr("device", "equalto", "desktop") | list -%}
+    {%- set mobile_shots = project.screenshots | selectattr("device", "equalto", "mobile") | list -%}
+    {% for group, css_class in [(desktop_shots, "screenshots"), (mobile_shots, "screenshots screenshots-mobile")] if group %}
+      <div class="{{ css_class }}">
+        {% for shot in group %}
+          <figure class="screenshot">
+            <a href="{{ shot.src }}" target="_blank" rel="noopener">
+              <img src="{{ shot.src }}" alt="{{ shot.alt }}" loading="lazy" decoding="async">
+            </a>
+            <figcaption>{{ shot.alt }}</figcaption>
+          </figure>
+        {% endfor %}
+      </div>
+    {% endfor %}
   {% endif %}
 
   {% if metrics %}

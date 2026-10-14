@@ -102,12 +102,26 @@ projects:
       приложения, а данные о бронированиях — совпадать с данными поставщика.
     solution: |
       Разработал бэкенд на FastAPI: интеграция с API поставщика, обработка статусов
-      бронирований в реальном времени. Ключевые эндпоинты и бизнес-логика покрыты
+      бронирований в реальном времени. В мини-приложении можно искать отели по городу,
+      датам, звёздности и типу питания, смотреть выдачу с фото и ценами и отели на карте. Ключевые эндпоинты и бизнес-логика покрыты
       тестами на pytest с mock и Faker.
     results:
       - Статусы бронирований обновляются в реальном времени
       - Ключевые эндпоинты покрыты тестами
     stack: [Python, FastAPI, Telegram Mini Apps, pytest]
+    screenshots:
+      - src: /static/img/projects/hotel-booking-mini-app/search.webp
+        alt: "Поиск: город, даты, звёздность, питание"
+        device: mobile
+      - src: /static/img/projects/hotel-booking-mini-app/hotels-list.webp
+        alt: "Выдача отелей с фото и ценами"
+        device: mobile
+      - src: /static/img/projects/hotel-booking-mini-app/map-light.webp
+        alt: "Отели на карте"
+        device: mobile
+      - src: /static/img/projects/hotel-booking-mini-app/map-dark.webp
+        alt: "Карта с ценами в тёмной теме"
+        device: mobile
     featured: true
 
   - slug: llm-content-bot

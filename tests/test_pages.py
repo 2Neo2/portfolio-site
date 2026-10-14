@@ -343,3 +343,15 @@ def test_screenshots_only_on_project_page(client: TestClient) -> None:
     """На главной картинок проектов нет, даже если у проекта есть скриншоты."""
     assert "/static/img/projects/alpha/main.jpg" not in client.get("/").text
     assert "/static/img/projects/alpha/main.jpg" in client.get("/projects/alpha").text
+
+
+def test_mobile_screenshots_in_separate_grid(client: TestClient) -> None:
+    html = client.get("/projects/gamma").text
+
+    desktop = html.split('<div class="screenshots">')[1].split("</div>")[0]
+    mobile = html.split('<div class="screenshots screenshots-mobile">')[1].split(
+        "</div>"
+    )[0]
+    assert "gamma/main.jpg" in desktop
+    assert "gamma/phone.jpg" in mobile
+    assert "gamma/phone.jpg" not in desktop

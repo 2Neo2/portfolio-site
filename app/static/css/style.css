@@ -909,6 +909,33 @@ a:hover {
   margin-top: 40px;
 }
 
+.screenshots-mobile {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px 16px;
+}
+
+@media (min-width: 640px) {
+  .screenshots-mobile {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.screenshots-mobile .screenshot a {
+  border-radius: 16px;
+}
+
+/* Скриншоты с телефонов разной высоты — выравниваем по одной пропорции, обрезая низ */
+.screenshots-mobile .screenshot img {
+  aspect-ratio: 1 / 2;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.screenshots-mobile .screenshot figcaption {
+  font-size: 13px;
+  line-height: 1.4;
+}
+
 .screenshot {
   margin: 0;
 }

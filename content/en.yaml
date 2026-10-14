@@ -101,12 +101,26 @@ projects:
       and booking data has to stay in sync with the supplier.
     solution: |
       Built a FastAPI backend: supplier API integration and real-time booking status
-      processing. Key endpoints and business logic are covered with pytest tests
+      processing. In the mini app users search hotels by city, dates, star rating and
+      meal plan, browse results with photos and prices, and see hotels on the map. Key endpoints and business logic are covered with pytest tests
       using mock and Faker.
     results:
       - Booking statuses are updated in real time
       - Key endpoints are covered with tests
     stack: [Python, FastAPI, Telegram Mini Apps, pytest]
+    screenshots:
+      - src: /static/img/projects/hotel-booking-mini-app/search.webp
+        alt: "Search: city, dates, star rating, meals"
+        device: mobile
+      - src: /static/img/projects/hotel-booking-mini-app/hotels-list.webp
+        alt: "Hotel results with photos and prices"
+        device: mobile
+      - src: /static/img/projects/hotel-booking-mini-app/map-light.webp
+        alt: "Hotels on the map"
+        device: mobile
+      - src: /static/img/projects/hotel-booking-mini-app/map-dark.webp
+        alt: "Map with prices in dark theme"
+        device: mobile
     featured: true
 
   - slug: llm-content-bot

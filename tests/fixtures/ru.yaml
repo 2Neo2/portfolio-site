@@ -60,6 +60,9 @@ projects:
     screenshots:
       - src: /static/img/projects/gamma/main.jpg
         alt: Главный экран гаммы
+      - src: /static/img/projects/gamma/phone.jpg
+        alt: Экран гаммы на телефоне
+        device: mobile
     stack: [Go]
     in_progress: true
 

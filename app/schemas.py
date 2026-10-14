@@ -59,6 +59,9 @@ class ProjectLinks(Schema):
 class Screenshot(Schema):
     src: str = Field(min_length=1)  # /static/img/projects/<slug>/<file>.jpg
     alt: str = Field(min_length=1)  # подпись: что на экране
+    device: Literal["desktop", "mobile"] = (
+        "desktop"  # mobile — вертикальный скриншот с телефона
+    )
 
 
 class Project(Schema):
