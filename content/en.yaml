@@ -46,6 +46,8 @@ skills:
     items: [Celery, RabbitMQ, django-rq]
   - group: AI & LLM
     items: [OpenAI API, Anthropic API, LangChain, LangGraph, Ollama, LLM agents]
+  - group: Web3
+    items: [Solana, EVM, Jito, Uniswap, Permit2, RPC, Solscan, Blockscout, Bubblemaps]
   - group: Security
     items: [OWASP Top 10, SAST, DAST, SCA, DevSecOps, Bandit]
   - group: Infrastructure
