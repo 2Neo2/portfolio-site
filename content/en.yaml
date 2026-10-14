@@ -123,6 +123,30 @@ projects:
         device: mobile
     featured: true
 
+  - slug: agentguard
+    name: AgentGuard — Master's thesis
+    summary: "Protecting LLM agents from privilege escalation via attacks on the LLM: every agent action is checked before it runs"
+    problem: |
+      LLM agents that can run system commands are vulnerable to prompt injection:
+      with an ordinary request an attacker can make the agent delete system logs or
+      reset the admin password. A layer is needed that checks every agent action
+      before it is executed.
+    solution: |
+      A seven-node LangGraph agent graph: request parsing and prompt injection detection,
+      risk scoring from 0 to 100, action planning, privilege control (a policy allows or
+      blocks the action based on the user / admin / root privilege level), sandboxed
+      execution, auditing of every decision to a JSONL log, and a response via a local
+      LLM (Ollama, Llama 2). Baseline and protected modes make it possible to compare
+      the agent's behaviour without and with protection.
+    results:
+      - 7 graph nodes — from request parsing to audit
+      - Dangerous actions are blocked before execution when privileges are insufficient
+      - Every agent decision is written to the audit log
+    stack: [Python, LangGraph, LangChain, Ollama, Llama 2]
+    links:
+      repo: https://github.com/lalmark/agentguard-llm-security
+    featured: true
+
   - slug: portfolio-site
     name: This website
     summary: Portfolio website on FastAPI with a JSON API, tests and two languages
