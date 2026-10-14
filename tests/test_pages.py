@@ -48,12 +48,6 @@ def test_project_page(client: TestClient) -> None:
     assert 'href="/projects/gamma"' in html
 
 
-def test_project_without_links_is_marked_closed(client: TestClient) -> None:
-    html = client.get("/projects/alpha").text
-
-    assert "код закрыт" in html
-
-
 def test_first_project_has_no_previous_link(client: TestClient) -> None:
     html = client.get("/projects/alpha").text
 
@@ -304,3 +298,15 @@ def test_english_experience_section(client: TestClient) -> None:
     assert "Aug 2024 — present" in section
     assert "1 yr 5 mos" in section
     assert "Key achievements" in section
+
+
+def test_spoken_languages(client: TestClient) -> None:
+    html = client.get("/").text
+
+    assert '<span class="spoken-language-name">Английский</span> B2' in html
+
+
+def test_closed_source_note_is_neutral(client: TestClient) -> None:
+    html = client.get("/projects/alpha").text
+
+    assert "Код проекта закрыт" in html

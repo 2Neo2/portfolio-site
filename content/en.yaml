@@ -1,21 +1,26 @@
-# WARNING: placeholder data. Numbers and wording are stubs — replace with real ones.
-# Project slugs must match content/ru.yaml.
+# English version content. Project slugs must match content/ru.yaml.
 
 profile:
   name: Ivan Doronin
   title: Python Backend Developer
-  tagline: I build backends for fintech services and Telegram bots
+  tagline: I design REST APIs, asynchronous services and Telegram bots with FastAPI and Django
   location: Moscow
-  work_formats: [remote, hybrid, office]  # remote / office / hybrid
+  work_formats: [remote, hybrid]  # remote / office / hybrid
   about: |
-    Python backend developer with 2+ years of experience. I build services where
-    reliability matters: external integrations, order processing and admin
-    panels for operators. I value clear architecture and code that is easy to maintain.
+    Python backend developer. I design and build REST APIs with Django/DRF and FastAPI,
+    integrate external services, set up asynchronous task processing with Celery,
+    RabbitMQ and Redis, and containerize and deploy with Docker, Nginx and Linux.
+    I pay special attention to security (SAST, SCA) and cover business logic with tests.
   motivation: |
-    I love backend because the business depends on it directly: if a request gets
-    lost, everyone notices. I want to grow towards high-load and asynchronous
-    architecture, design systems that handle growing traffic calmly, and work
-    in a team with strong code review.
+    What I like about backend is that the product depends on it directly: a slow
+    export or a missed vulnerability is noticed right away. I want to grow towards
+    high-load and asynchronous architecture, design reliable and secure systems
+    and work in a team with strong code review.
+  languages:
+    - name: Russian
+      level: native
+    - name: English
+      level: B2 — upper-intermediate
   contacts:
     telegram: https://t.me/idoroninnn
     github: https://github.com/2Neo2
@@ -27,37 +32,70 @@ profile:
 
 skills:
   - group: Languages & frameworks
-    items: [Python, Django, FastAPI, aiogram, pyTelegramBotAPI]
-  - group: Databases
-    items: [PostgreSQL, SQLite, Redis, SQLAlchemy 2.0, Alembic, Django ORM]
-  - group: Integrations
-    items: [REST API, Webhooks, KYC]
+    items: [Python, FastAPI, Django, Django REST Framework, SQL]
+  - group: Telegram
+    items: [aiogram, python-telegram-bot, pyTelegramBotAPI, Telegram Mini Apps]
+  - group: Databases & queues
+    items: [PostgreSQL, MongoDB, Redis, SQLAlchemy, Alembic, Celery, RabbitMQ]
+  - group: Security
+    items: [OWASP Top 10, SAST, DAST, SCA, DevSecOps, Bandit]
+  - group: AI & LLM
+    items: [OpenAI API, LangChain, LangGraph, LLM agents]
   - group: Infrastructure
-    items: [Docker, Linux, Nginx, Git, GitHub Actions]
-  - group: Testing & quality
-    items: [pytest, ruff, mypy]
+    items: [Docker, Nginx, Linux, Git, GitHub, GitLab, CI/CD]
+  - group: Testing
+    items: [pytest, mock, Faker]
+  - group: Principles
+    items: [OOP, SOLID, DRY, KISS]
 
 projects:
-  - slug: telegram-bots-platform
-    name: Telegram bot platform
-    summary: Backend for a family of Telegram bots with external service integrations
+  - slug: hotel-booking-mini-app
+    name: Hotel booking Telegram Mini App
+    summary: FastAPI backend for a hotel booking Telegram Mini App with supplier API integration
     problem: |
-      The company needs to work with many external providers
-      across several bots at once, while operators need to handle orders quickly
-      and see statistics.
+      Users need to book hotels right inside Telegram, without a separate app,
+      and booking data has to stay in sync with the supplier.
     solution: |
-      A modular Django project: external services plug in through a unified
-      interface, with KYC and 2FA, an admin panel for operators, statistics,
-      promo mechanics and scheduled broadcasts.
+      Built a FastAPI backend: supplier API integration and real-time booking status
+      processing. Key endpoints and business logic are covered with pytest tests
+      using mock and Faker.
     results:
-      - 10+ external API integrations
-      - 1,000+ orders per day
-      - 500+ commits since August 2024
-    stack: [Python, Django, pyTelegramBotAPI, PostgreSQL, Docker]
-    links:
-      repo: null
-      demo: null
+      - Booking statuses are updated in real time
+      - Key endpoints are covered with tests
+    stack: [Python, FastAPI, Telegram Mini Apps, pytest]
     featured: true
+
+  - slug: qgis-transport-plugin
+    name: Moscow Region traffic flow analysis
+    summary: A QGIS plugin and a DRF API for optimizing the public transport route network
+    problem: |
+      The Moscow Region Ministry of Transport needed to find overloaded routes and
+      stops and rebuild the route network, while exporting transport data for
+      analysis took about 12 hours.
+    solution: |
+      Built a QGIS plugin with PyQt: it finds the busiest municipalities, routes,
+      segments and stops, builds new optimal routes to relieve passenger load and
+      exports the analysis to Excel. Designed a DRF API for the data, with dedicated
+      route endpoints used by the plugin.
+    results:
+      - 24× faster data export — 30 minutes instead of ~12 hours
+      - «Breakthrough of the Year» award
+    stack: [Python, PyQt, QGIS, Django REST Framework]
+    featured: true
+
+  - slug: llm-content-bot
+    name: LLM-powered content Telegram bot
+    summary: A bot that generates content via the OpenAI API and keeps dialogue history
+    problem: |
+      Content preparation needed to be automated with an LLM inside the familiar
+      Telegram interface.
+    solution: |
+      Designed the bot architecture myself, integrated an LLM via the OpenAI API,
+      tuned the prompts and implemented dialogue history storage.
+    results:
+      - Architecture, prompts and dialogue history built from scratch
+    stack: [Python, python-telegram-bot, OpenAI API]
+    featured: false
 
   - slug: jobradar
     name: JobRadar
@@ -70,28 +108,23 @@ projects:
       against custom filters, Telegram notifications and an application tracker.
     results:
       - 4 job sources
-      - 200+ openings per day after filtering
     stack: [Python, aiogram 3, FastAPI, SQLAlchemy 2.0, Alembic, Docker, pytest]
-    links:
-      repo: https://github.com/2Neo2/jobradar
-      demo: null
-    featured: true
+    featured: false
 
   - slug: portfolio-site
     name: This website
-    summary: Portfolio website on FastAPI with a JSON API, tests, Docker and CI/CD
+    summary: Portfolio website on FastAPI with a JSON API, tests and two languages
     problem: |
       I needed a portfolio site that doesn't just list my skills but demonstrates them.
     solution: |
       FastAPI + Jinja2, YAML content validated with Pydantic, a public JSON API,
-      pytest tests, Docker and deployment via GitHub Actions.
+      Russian and English versions, pytest tests.
     results:
-      - 85%+ test coverage
-      - Lighthouse 90+
-    stack: [Python, FastAPI, Pydantic, Jinja2, Docker, GitHub Actions]
+      - 100% test coverage
+      - 2 language versions of the site and API
+    stack: [Python, FastAPI, Pydantic, Jinja2, pytest]
     links:
       repo: https://github.com/2Neo2/portfolio-site
-      demo: null
     featured: false
 
 experience:

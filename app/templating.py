@@ -21,7 +21,7 @@ APP_DIR = BASE_DIR / "app"
 STATIC_DIR = APP_DIR / "static"
 TEMPLATES_DIR = APP_DIR / "templates"
 
-METRIC_RE = re.compile(r"^(?P<value>\d[\d\s.,]*[+%]*)\s+(?P<label>.+)$")
+METRIC_RE = re.compile(r"^(?P<value>\d[\d\s.,]*[+%×]*)\s+(?P<label>.+)$")
 
 Metric = tuple[str, str]
 

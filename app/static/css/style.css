@@ -782,6 +782,37 @@ a:hover {
 }
 
 /* Обо мне */
+.spoken-languages {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 16px;
+  margin-top: 28px;
+}
+
+.spoken-languages ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.spoken-languages li {
+  padding: 5px 12px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--text-muted);
+  font-size: 14.5px;
+}
+
+.spoken-language-name {
+  color: var(--text);
+  font-weight: 600;
+}
+
 .callout {
   margin-top: 36px;
   padding: 24px 28px;

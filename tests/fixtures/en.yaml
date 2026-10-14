@@ -8,6 +8,9 @@ profile:
   work_formats: [remote, hybrid]
   about: Test about text.
   motivation: Test motivation.
+  languages:
+    - name: English
+      level: B2
   contacts:
     telegram: https://t.me/test_user
     github: https://github.com/test-user

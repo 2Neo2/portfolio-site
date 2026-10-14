@@ -26,6 +26,11 @@ class Contacts(Schema):
     hh: HttpUrl | None = None
 
 
+class SpokenLanguage(Schema):
+    name: str = Field(min_length=1)
+    level: str = Field(min_length=1)
+
+
 class Profile(Schema):
     name: str = Field(min_length=1)
     title: str = Field(min_length=1)
@@ -34,6 +39,7 @@ class Profile(Schema):
     work_formats: list[WorkFormat] = []
     about: str
     motivation: str
+    languages: list[SpokenLanguage] = []
     contacts: Contacts
     resume_url: str | None = None
     photo_url: str | None = None
