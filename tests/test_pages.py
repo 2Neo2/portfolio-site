@@ -241,3 +241,16 @@ def test_english_404(client: TestClient) -> None:
     assert response.status_code == 404
     assert '<html lang="en">' in response.text
     assert "Page not found" in response.text
+
+
+@pytest.mark.parametrize(
+    ("url", "link"),
+    [
+        ("/", '<a href="/#education">Образование</a>'),
+        ("/en/", '<a href="/en/#education">Education</a>'),
+    ],
+)
+def test_nav_has_education_link(client: TestClient, url: str, link: str) -> None:
+    nav = client.get(url).text.split('<nav class="nav"')[1].split("</nav>")[0]
+
+    assert link in nav
