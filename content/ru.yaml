@@ -98,6 +98,15 @@ projects:
       - 24× быстрее выгрузка данных — 30 минут вместо ~12 часов
       - Награда «Прорыв года»
     stack: [Python, PyQt, QGIS, Django REST Framework]
+    screenshots:
+      - src: /static/img/projects/qgis-transport-plugin/route-load.webp
+        alt: "Загруженность остановок и перегонов на маршруте"
+      - src: /static/img/projects/qgis-transport-plugin/qgis-layers.webp
+        alt: "Плагин в QGIS: загруженность каждой остановки маршрута"
+      - src: /static/img/projects/qgis-transport-plugin/population-density.webp
+        alt: "Слой плотности населения Москвы и Московской области"
+      - src: /static/img/projects/qgis-transport-plugin/municipal-routes.webp
+        alt: "Маршрутная сеть муниципалитета"
     featured: true
 
   - slug: llm-content-bot

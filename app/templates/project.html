@@ -35,7 +35,7 @@
       {% for shot in project.screenshots %}
         <figure class="screenshot">
           <a href="{{ shot.src }}" target="_blank" rel="noopener">
-            <img src="{{ shot.src }}" alt="{{ shot.alt }}" width="1440" height="900" loading="{{ 'eager' if loop.first else 'lazy' }}">
+            <img src="{{ shot.src }}" alt="{{ shot.alt }}" loading="{{ 'eager' if loop.first else 'lazy' }}" decoding="async">
           </a>
           <figcaption>{{ shot.alt }}</figcaption>
         </figure>

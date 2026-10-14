@@ -98,6 +98,15 @@ projects:
       - 24× faster data export — 30 minutes instead of ~12 hours
       - «Breakthrough of the Year» award
     stack: [Python, PyQt, QGIS, Django REST Framework]
+    screenshots:
+      - src: /static/img/projects/qgis-transport-plugin/route-load.webp
+        alt: "Stop and segment load along a route"
+      - src: /static/img/projects/qgis-transport-plugin/qgis-layers.webp
+        alt: "The plugin in QGIS: load at every stop of a route"
+      - src: /static/img/projects/qgis-transport-plugin/population-density.webp
+        alt: "Population density layer for Moscow and the Moscow Region"
+      - src: /static/img/projects/qgis-transport-plugin/municipal-routes.webp
+        alt: "A municipal route network"
     featured: true
 
   - slug: llm-content-bot
