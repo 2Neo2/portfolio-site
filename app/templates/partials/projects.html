@@ -1,0 +1,51 @@
+{% from "partials/icons.html" import icon %}
+{%- set featured = content.projects | selectattr("featured") | list -%}
+{%- set others = content.projects | rejectattr("featured") | list -%}
+<section id="projects" class="section container">
+  <header class="section-head">
+    <span class="section-num">03</span>
+    <h2>Проекты</h2>
+  </header>
+  <div class="section-body">
+    <div class="projects-grid">
+      {% for project in featured %}
+        {%- set metrics, _ = project.results | split_results -%}
+        <article class="project-card">
+          <h3><a class="stretched-link" href="/projects/{{ project.slug }}">{{ project.name }}</a></h3>
+          <p class="project-summary">{{ project.summary }}</p>
+          {% if metrics %}
+            <dl class="card-metrics">
+              {% for value, label in metrics[:2] %}
+                <div>
+                  <dt class="metric-value">{{ value }}</dt>
+                  <dd class="metric-label">{{ label }}</dd>
+                </div>
+              {% endfor %}
+            </dl>
+          {% endif %}
+          <ul class="tags tags-sm">
+            {% for item in project.stack %}<li class="tag">{{ item }}</li>{% endfor %}
+          </ul>
+          <span class="more" aria-hidden="true">Подробнее {{ icon("arrow-right") }}</span>
+        </article>
+      {% endfor %}
+    </div>
+
+    {% if others %}
+      <p class="eyebrow list-title">Другие проекты</p>
+      <ul class="project-list">
+        {% for project in others %}
+          <li>
+            <a href="/projects/{{ project.slug }}">
+              <span>
+                <span class="project-list-name">{{ project.name }}</span>
+                <span class="project-list-summary">{{ project.summary }}</span>
+              </span>
+              {{ icon("arrow-right") }}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  </div>
+</section>

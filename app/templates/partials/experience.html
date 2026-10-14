@@ -1,0 +1,24 @@
+{% if content.experience %}
+<section id="experience" class="section container">
+  <header class="section-head">
+    <span class="section-num">04</span>
+    <h2>Опыт</h2>
+  </header>
+  <ol class="section-body timeline">
+    {% for job in content.experience %}
+      <li class="timeline-item">
+        <p class="timeline-period">{{ job.period }}</p>
+        <div>
+          <h3>{{ job.role }}</h3>
+          <p class="timeline-company">{{ job.company }}</p>
+          {% if job.highlights %}
+            <ul class="bullets">
+              {% for highlight in job.highlights %}<li>{{ highlight }}</li>{% endfor %}
+            </ul>
+          {% endif %}
+        </div>
+      </li>
+    {% endfor %}
+  </ol>
+</section>
+{% endif %}

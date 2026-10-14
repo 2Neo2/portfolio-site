@@ -1,0 +1,17 @@
+{% from "partials/icons.html" import icon %}
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="logo" href="/">{{ content.profile.name }}</a>
+    <nav class="nav" aria-label="Разделы">
+      <a href="/#about">Обо мне</a>
+      <a href="/#stack">Стек</a>
+      <a href="/#projects">Проекты</a>
+      <a href="/#experience">Опыт</a>
+      <a href="/#contacts">Контакты</a>
+    </nav>
+    <button class="theme-toggle" type="button" aria-label="Переключить тему" data-theme-toggle>
+      <span class="theme-icon-moon">{{ icon("moon") }}</span>
+      <span class="theme-icon-sun">{{ icon("sun") }}</span>
+    </button>
+  </div>
+</header>

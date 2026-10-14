@@ -1,0 +1,45 @@
+{% from "partials/icons.html" import icon %}
+{%- set contacts = content.profile.contacts -%}
+<section id="contacts" class="container contact">
+  <div class="contact-panel">
+    <p class="eyebrow">Контакты</p>
+    <h2 class="contact-title">Давайте поговорим</h2>
+    <p class="contact-text">Если у вас есть вакансия или проект — напишите, обсудим задачи и формат работы.</p>
+
+    <ul class="contact-links">
+      <li>
+        <a href="{{ contacts.telegram }}" target="_blank" rel="noopener">
+          <span class="contact-icon">{{ icon("telegram") }}</span>
+          <span><span class="contact-label">Telegram</span><span class="contact-value">{{ contacts.telegram | display_url }}</span></span>
+        </a>
+      </li>
+      <li>
+        <a href="mailto:{{ contacts.email }}">
+          <span class="contact-icon">{{ icon("mail") }}</span>
+          <span><span class="contact-label">Email</span>{%- set user, domain = contacts.email.split("@") -%}<span class="contact-value">{{ user }}<wbr>@{{ domain }}</span></span>
+        </a>
+      </li>
+      <li>
+        <a href="{{ contacts.github }}" target="_blank" rel="noopener">
+          <span class="contact-icon">{{ icon("github") }}</span>
+          <span><span class="contact-label">GitHub</span><span class="contact-value">{{ contacts.github | display_url }}</span></span>
+        </a>
+      </li>
+      {% if contacts.hh %}
+        <li>
+          <a href="{{ contacts.hh }}" target="_blank" rel="noopener">
+            <span class="contact-icon">{{ icon("briefcase") }}</span>
+            <span><span class="contact-label">hh.ru</span><span class="contact-value">Резюме на hh.ru</span></span>
+          </a>
+        </li>
+      {% elif has_resume %}
+        <li>
+          <a href="{{ content.profile.resume_url }}" download>
+            <span class="contact-icon">{{ icon("download") }}</span>
+            <span><span class="contact-label">Резюме</span><span class="contact-value">Скачать PDF</span></span>
+          </a>
+        </li>
+      {% endif %}
+    </ul>
+  </div>
+</section>

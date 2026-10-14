@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% from "partials/icons.html" import icon %}
+
+{% block title %}Страница не найдена — {{ content.profile.name }}{% endblock %}
+
+{% block main %}
+<section class="container not-found">
+  <p class="not-found-code">404</p>
+  <h1>Страница не найдена</h1>
+  <p class="lead">Возможно, ссылка устарела или в адресе опечатка.</p>
+  <a class="btn btn-primary" href="/">{{ icon("arrow-left") }}На главную</a>
+</section>
+{% endblock %}

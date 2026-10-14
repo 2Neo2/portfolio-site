@@ -1,0 +1,39 @@
+{% from "partials/icons.html" import icon %}
+{%- set profile = content.profile -%}
+<section class="hero container">
+  <div class="hero-text">
+    {% if profile.open_to_work %}
+      <p class="status"><span class="status-dot" aria-hidden="true"></span>Открыт к предложениям</p>
+    {% endif %}
+    <h1 class="hero-name">{{ profile.name }}</h1>
+    <p class="hero-title">{{ profile.title }}</p>
+    <p class="hero-tagline">{{ profile.tagline }}</p>
+    <p class="hero-location">{{ icon("pin") }}{{ profile.location }}</p>
+    <div class="actions">
+      <a class="btn btn-primary" href="{{ profile.contacts.telegram }}" target="_blank" rel="noopener">
+        {{ icon("telegram") }}Написать в Telegram
+      </a>
+      <a class="btn" href="{{ profile.contacts.github }}" target="_blank" rel="noopener">
+        {{ icon("github") }}GitHub
+      </a>
+      {% if has_resume %}
+        <a class="btn" href="{{ profile.resume_url }}" download>{{ icon("download") }}Резюме</a>
+      {% endif %}
+    </div>
+  </div>
+
+  <figure class="code-card" aria-label="Пример ответа API этого сайта">
+    <div class="code-bar">
+      <span><span class="code-method">GET</span> /api/profile</span>
+      <span class="code-status">200 OK</span>
+    </div>
+    <pre><code>{
+  <span class="tok-key">"name"</span>: <span class="tok-str">"{{ profile.name }}"</span>,
+  <span class="tok-key">"title"</span>: <span class="tok-str">"{{ profile.title }}"</span>,
+  <span class="tok-key">"location"</span>: <span class="tok-str">"{{ profile.location }}"</span>,
+  <span class="tok-key">"open_to_work"</span>: <span class="tok-bool">{{ "true" if profile.open_to_work else "false" }}</span>,
+  <span class="tok-muted">…</span>
+}</code></pre>
+    <a class="code-foot" href="/docs">Открыть API в Swagger {{ icon("arrow-right") }}</a>
+  </figure>
+</section>

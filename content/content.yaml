@@ -20,6 +20,7 @@ profile:
     email: ivandoronin22@gmail.com
     hh: null
   resume_url: /static/resume.pdf
+  open_to_work: true
 
 skills:
   - group: Языки и фреймворки

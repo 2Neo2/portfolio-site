@@ -1,0 +1,43 @@
+import re
+from collections.abc import Iterable
+from datetime import date
+
+from fastapi.templating import Jinja2Templates
+
+from app.config import BASE_DIR
+
+APP_DIR = BASE_DIR / "app"
+STATIC_DIR = APP_DIR / "static"
+TEMPLATES_DIR = APP_DIR / "templates"
+
+METRIC_RE = re.compile(r"^(?P<value>\d[\d\s.,]*[+%]*)\s+(?P<label>.+)$")
+
+Metric = tuple[str, str]
+
+
+def split_results(results: Iterable[str]) -> tuple[list[Metric], list[str]]:
+    """Делит результаты на метрики с числом впереди и обычные пункты.
+
+    '1 000+ заявок в день' -> ('1 000+', 'заявок в день')
+    'Lighthouse 90+'       -> обычный пункт
+    """
+    metrics: list[Metric] = []
+    notes: list[str] = []
+    for result in results:
+        match = METRIC_RE.match(result)
+        if match is None:
+            notes.append(result)
+        else:
+            metrics.append((match["value"].strip(), match["label"]))
+    return metrics, notes
+
+
+def display_url(url: object) -> str:
+    """https://github.com/2Neo2 -> github.com/2Neo2"""
+    return str(url).removeprefix("https://").removeprefix("http://").rstrip("/")
+
+
+templates = Jinja2Templates(directory=TEMPLATES_DIR)
+templates.env.filters["split_results"] = split_results
+templates.env.filters["display_url"] = display_url
+templates.env.globals["current_year"] = date.today().year

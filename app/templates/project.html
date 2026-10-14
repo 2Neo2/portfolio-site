@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% from "partials/icons.html" import icon %}
+
+{% block title %}{{ project.name }} — {{ content.profile.name }}{% endblock %}
+{% block description %}{{ project.summary }}{% endblock %}
+
+{% block main %}
+{%- set metrics, notes = project.results | split_results -%}
+<article class="container container-narrow project-page">
+  <a class="back-link" href="/#projects">{{ icon("arrow-left") }}Все проекты</a>
+
+  <header class="project-header">
+    <p class="eyebrow">Проект</p>
+    <h1>{{ project.name }}</h1>
+    <p class="lead">{{ project.summary }}</p>
+    <ul class="tags">
+      {% for item in project.stack %}<li class="tag">{{ item }}</li>{% endfor %}
+    </ul>
+    {% if project.links.repo or project.links.demo %}
+      <div class="actions">
+        {% if project.links.demo %}
+          <a class="btn btn-primary" href="{{ project.links.demo }}" target="_blank" rel="noopener">{{ icon("external") }}Открыть демо</a>
+        {% endif %}
+        {% if project.links.repo %}
+          <a class="btn" href="{{ project.links.repo }}" target="_blank" rel="noopener">{{ icon("github") }}Исходный код</a>
+        {% endif %}
+      </div>
+    {% else %}
+      <p class="note">{{ icon("lock") }}Коммерческий проект — код закрыт</p>
+    {% endif %}
+  </header>
+
+  {% if metrics %}
+    <dl class="metrics">
+      {% for value, label in metrics %}
+        <div class="metric">
+          <dt class="metric-value">{{ value }}</dt>
+          <dd class="metric-label">{{ label }}</dd>
+        </div>
+      {% endfor %}
+    </dl>
+  {% endif %}
+
+  <section class="project-section prose">
+    <h2>Задача</h2>
+    <p>{{ project.problem }}</p>
+  </section>
+
+  <section class="project-section prose">
+    <h2>Решение</h2>
+    <p>{{ project.solution }}</p>
+  </section>
+
+  {% if notes %}
+    <section class="project-section">
+      <h2>Результаты</h2>
+      <ul class="checklist">
+        {% for note in notes %}<li>{{ icon("check") }}<span>{{ note }}</span></li>{% endfor %}
+      </ul>
+    </section>
+  {% endif %}
+
+  {% if previous_project or next_project %}
+    <nav class="pager" aria-label="Другие проекты">
+      {% if previous_project %}
+        <a class="pager-prev" href="/projects/{{ previous_project.slug }}">
+          <span class="pager-label">{{ icon("arrow-left") }}Предыдущий</span>
+          <span class="pager-name">{{ previous_project.name }}</span>
+        </a>
+      {% endif %}
+      {% if next_project %}
+        <a class="pager-next" href="/projects/{{ next_project.slug }}">
+          <span class="pager-label">Следующий{{ icon("arrow-right") }}</span>
+          <span class="pager-name">{{ next_project.name }}</span>
+        </a>
+      {% endif %}
+    </nav>
+  {% endif %}
+</article>
+{% endblock %}

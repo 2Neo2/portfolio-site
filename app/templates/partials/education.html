@@ -1,0 +1,39 @@
+{% from "partials/icons.html" import icon %}
+{% if content.education or content.learning_now %}
+<section id="education" class="section container">
+  <header class="section-head">
+    <span class="section-num">05</span>
+    <h2>Обучение</h2>
+  </header>
+  <div class="section-body">
+    {% if content.education %}
+      <ul class="edu-list">
+        {% for item in content.education %}
+          <li>
+            <span class="edu-year">{{ item.year }}</span>
+            <div>
+              <h3>
+                {% if item.url %}
+                  <a href="{{ item.url }}" target="_blank" rel="noopener">{{ item.title }} {{ icon("external") }}</a>
+                {% else %}
+                  {{ item.title }}
+                {% endif %}
+              </h3>
+              <p>{{ item.org }}</p>
+            </div>
+          </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+
+    {% if content.learning_now %}
+      <div class="learning">
+        <p class="eyebrow">Изучаю сейчас</p>
+        <ul class="tags">
+          {% for item in content.learning_now %}<li class="tag tag-outline">{{ item }}</li>{% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+  </div>
+</section>
+{% endif %}

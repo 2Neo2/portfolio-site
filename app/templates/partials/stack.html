@@ -1,0 +1,18 @@
+<section id="stack" class="section container">
+  <header class="section-head">
+    <span class="section-num">02</span>
+    <h2>Стек</h2>
+  </header>
+  <dl class="section-body stack">
+    {% for group in content.skills %}
+      <div class="stack-row">
+        <dt>{{ group.group }}</dt>
+        <dd>
+          <ul class="tags">
+            {% for item in group.items %}<li class="tag">{{ item }}</li>{% endfor %}
+          </ul>
+        </dd>
+      </div>
+    {% endfor %}
+  </dl>
+</section>
