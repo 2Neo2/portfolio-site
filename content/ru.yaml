@@ -7,7 +7,7 @@ profile:
   location: Москва
   work_formats: [remote, hybrid, office]  # remote / office / hybrid
   about: |
-    Python backend-разработчик. В VeloxCode развиваю и поддерживаю 13 продакшен-проектов
+    Python backend-разработчик. В TrueCode развиваю и поддерживаю 13 продакшен-проектов
     на Django, а до этого в Министерстве транспорта Московской области делал API на DRF
     и асинхронную выгрузку транспортных данных. Магистр кибербезопасности НИУ ВШЭ, поэтому
     отдельно слежу за безопасностью кода, а в аспирантуре занимаюсь AI и LLM: строю агентов
@@ -251,7 +251,7 @@ projects:
     featured: false
 
 experience:
-  - company: VeloxCode
+  - company: TrueCode
     role: Backend-разработчик
     location: Москва
     about: Разработка Web2-проектов

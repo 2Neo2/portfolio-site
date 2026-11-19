@@ -7,7 +7,7 @@ profile:
   location: Moscow
   work_formats: [remote, hybrid, office]  # remote / office / hybrid
   about: |
-    Python backend developer. At VeloxCode I develop and maintain 13 production Django
+    Python backend developer. At TrueCode I develop and maintain 13 production Django
     projects; before that, at the Moscow Region Ministry of Transport, I built a DRF API and
     asynchronous transport data export. I hold a Master's in Cybersecurity from HSE University,
     so I pay special attention to code security, and in my postgraduate studies I focus on AI
@@ -250,7 +250,7 @@ projects:
     featured: false
 
 experience:
-  - company: VeloxCode
+  - company: TrueCode
     role: Backend Developer
     location: Moscow
     about: Web2 product development
